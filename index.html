@@ -8,8 +8,9 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif; background: #f5f5f5; color: #222; }
 
-  #header { line-height: 0; }
+  #header { line-height: 0; background: #000; }
   #header img { width: 100%; display: block; }
+  #header-band { background: #1a9ea0; height: 10px; }
 
   #list-view { display: block; }
   #detail-view { display: none; }
@@ -36,7 +37,7 @@
 
   #detail-view { background: #fff; min-height: 100vh; }
   #detail-header {
-    background: #2a9d8f;
+    background: #1a9ea0;
     padding: 16px 20px;
   }
   #detail-header h2 {
@@ -71,8 +72,9 @@
 
 <div id="list-view">
   <div id="header">
-    <img src="header.png" alt="千年先の風景 人智を超えた設計と挑戦">
+    <img src="ヘッダー.png" alt="千年先の風景 人智を超えた設計と挑戦">
   </div>
+  <div id="header-band"></div>
   <ul id="work-list"></ul>
 </div>
 
