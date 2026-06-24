@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>展示ガイド</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=arrow_back,arrow_forward" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif; background: #f5f5f5; color: #222; }
@@ -25,8 +29,10 @@
   }
   li:last-child a { border-bottom: none; }
   li a:active { background: #f0f0f0; }
-  .num { font-size: 14px; color: #888; min-width: 24px; }
-  .title-text { flex: 1; }
+  .num { font-size: 14px; color: #1a9ea0; min-width: 24px; }
+  .num:empty { min-width: 0; }
+  li a.no-num { padding-left: 16px; }
+  .title-text { flex: 1; font-family: 'Shippori Mincho', serif; }
   #detail-view { background: #fff; min-height: 100vh; padding-bottom: 40px; }
   #detail-top {
     display: flex;
@@ -48,7 +54,11 @@
     padding: 6px 12px;
     cursor: pointer;
     white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 4px;
   }
+  #back-btn .material-symbols-outlined { font-size: 18px; }
   #back-btn:active { background: #f0f0f0; }
   #font-toggle { display: flex; gap: 8px; }
   #font-toggle button {
@@ -57,20 +67,42 @@
   }
   #font-toggle button.active { background: #1a9ea0; color: #fff; border-color: #1a9ea0; }
   #detail-body { padding: 20px 20px 24px; }
-  #detail-title-text { font-size: 20px; font-weight: 700; color: #222; margin-bottom: 16px; }
-  #detail-body p { font-size: 15px; line-height: 1.8; color: #333; white-space: pre-wrap; }
+  #detail-title-text { font-size: 20px; font-weight: 400; color: #222; margin-bottom: 16px; font-family: 'Shippori Mincho', serif; }
+  #detail-num { color: #1a9ea0; }
+  #detail-body p { font-size: 15px; line-height: 1.8; color: #333; white-space: pre-wrap; font-weight: 300; }
   body.large #detail-body p { font-size: 19px; }
   body.large #detail-title-text { font-size: 24px; }
   .vimeo-note {
-    font-size: 13px;
+    font-size: 11px;
     color: #1a9ea0;
     border: 1px solid #1a9ea0;
     padding: 4px 12px;
-    margin-top: 24px;
+    margin-top: 40px;
     margin-bottom: 10px;
     display: inline-block;
   }
   .vimeo-placeholder { width: 100%; height: 200px; background: #ddd; border-radius: 6px; }
+  #page-nav {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #eee;
+    margin-top: 32px;
+    padding: 16px 20px;
+  }
+  .nav-prev, .nav-next {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    text-align: left;
+  }
+  .nav-next { text-align: right; }
+  .nav-label { font-size: 14px; color: #333; }
+  .nav-arrow { font-size: 20px; color: #555; }
+  .nav-title { font-size: 12px; color: #aaa; }
 </style>
 </head>
 <body>
@@ -83,7 +115,7 @@
 </div>
 <div id="detail-view">
   <div id="detail-top">
-    <button id="back-btn" onclick="showList()">← 一覧に戻る</button>
+    <button id="back-btn" onclick="showList()"><span class="material-symbols-outlined">arrow_back</span> 一覧に戻る</button>
     <div id="font-toggle">
       <button id="btn-small" class="active" onclick="setFont('small')">小</button>
       <button id="btn-large" onclick="setFont('large')">大</button>
@@ -95,13 +127,28 @@
     <p class="vimeo-note">音声ガイドはイヤホンでの視聴をお願いいたします。</p>
     <div id="detail-vimeo" class="vimeo-wrap"></div>
   </div>
+  <div id="page-nav">
+    <button class="nav-prev" id="nav-prev-btn" onclick="movePage(-1)">
+      <span class="nav-label">前のページ</span>
+      <span class="nav-arrow"><span class="material-symbols-outlined">arrow_back</span></span>
+      <span class="nav-title" id="nav-prev-title"></span>
+    </button>
+    <button class="nav-next" id="nav-next-btn" onclick="movePage(1)">
+      <span class="nav-label">次のページ</span>
+      <span class="nav-arrow"><span class="material-symbols-outlined">arrow_forward</span></span>
+      <span class="nav-title" id="nav-next-title"></span>
+    </button>
+  </div>
 </div>
 <script>
 const works = [
   {
     num: null,
     title: "展示会コンセプト",
-    text: `「千年先の風景 ―人智を超えた設計と挑戦」
+    mincho: true,
+    hideTitle: true,
+    text: `千年先の風景 ―人智を超えた設計と挑戦
+
 もし、神がひとつの土地を選び、
 そこに風景を刻むとしたら――
 
@@ -246,15 +293,24 @@ const list = document.getElementById('work-list');
 works.forEach((w, i) => {
   const li = document.createElement('li');
   const numHtml = w.num !== null ? `<span class="num">${w.num}</span>` : `<span class="num"></span>`;
-  li.innerHTML = `<a href="#" onclick="showDetail(${i}); return false;">${numHtml}<span class="title-text">${w.title}</span></a>`;
+  const noNum = w.num === null ? ' class="no-num"' : '';
+  li.innerHTML = `<a href="#"${noNum} onclick="showDetail(${i}); return false;">${numHtml}<span class="title-text">${w.title}</span></a>`;
   list.appendChild(li);
 });
 
 function showDetail(i) {
   const w = works[i];
-  const titlePrefix = w.num !== null ? w.num + '　' : '';
-  document.getElementById('detail-title-text').textContent = titlePrefix + w.title;
-  document.getElementById('detail-text').textContent = w.text;
+  const titleEl = document.getElementById('detail-title-text');
+  if (w.hideTitle) {
+    titleEl.style.display = 'none';
+  } else {
+    titleEl.style.display = '';
+    const titlePrefix = w.num !== null ? `<span id="detail-num">${w.num}</span>　` : '';
+    titleEl.innerHTML = titlePrefix + w.title;
+  }
+  const textEl = document.getElementById('detail-text');
+  textEl.textContent = w.text;
+  textEl.style.fontFamily = w.mincho ? "'Shippori Mincho', serif" : '';
 
   const vimeoEl = document.getElementById('detail-vimeo');
   if (w.vimeoId) {
@@ -270,7 +326,33 @@ function showDetail(i) {
 
   document.getElementById('list-view').style.display = 'none';
   document.getElementById('detail-view').style.display = 'block';
+  window.currentIndex = i;
+
+  const prev = works[i - 1];
+  const next = works[i + 1];
+  const prevBtn = document.getElementById('nav-prev-btn');
+  const nextBtn = document.getElementById('nav-next-btn');
+  if (prev) {
+    prevBtn.style.visibility = 'visible';
+    const prevPrefix = prev.num !== null ? prev.num + '　' : '';
+    document.getElementById('nav-prev-title').textContent = prevPrefix + prev.title;
+  } else {
+    prevBtn.style.visibility = 'hidden';
+  }
+  if (next) {
+    nextBtn.style.visibility = 'visible';
+    const nextPrefix = next.num !== null ? next.num + '　' : '';
+    document.getElementById('nav-next-title').textContent = nextPrefix + next.title;
+  } else {
+    nextBtn.style.visibility = 'hidden';
+  }
+
   window.scrollTo(0, 0);
+}
+
+function movePage(dir) {
+  const next = window.currentIndex + dir;
+  if (next >= 0 && next < works.length) showDetail(next);
 }
 
 function setFont(size) {
