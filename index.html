@@ -228,7 +228,7 @@ const works = [
     num: 10,
     title: "運動場",
     text: `64m×100mの国際規格のサッカーグラウンドです。山に挟まれた狭い谷間を、硬い岩盤を少しずつ削って広げながら完成しました。広すぎず狭すぎず、適当な広さを保っています。毎年、世界中から多くの人々が集まって、平和を目的としたサッカーやバレーボール、テニス、バスケットボールなどの国際大会が開催されています。スポーツをするときに人々が怪我をしないように小さな石1つないように真心を込めて管理されています。この運動場は昔から一度雨が降ると大きな水たまりになって使用することが出来なかったので、中心部分を少し高めた構造にし、土を入れ替えて排水の問題を解決するようになりました。`,
-    vimeo: ""
+    vimeo: `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1204097425?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="202606月明洞写真展タイトル 10運動場"></iframe></div>`
   },
   {
     num: 11,
@@ -284,7 +284,12 @@ function showDetail(i) {
 
   const vimeoEl = document.getElementById('detail-vimeo');
   if (w.vimeo) {
-    vimeoEl.innerHTML = `<iframe src="${w.vimeo}" height="200" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+    vimeoEl.innerHTML = w.vimeo;
+    if (!document.querySelector('script[src="https://player.vimeo.com/api/player.js"]')) {
+      const s = document.createElement('script');
+      s.src = 'https://player.vimeo.com/api/player.js';
+      document.body.appendChild(s);
+    }
   } else {
     vimeoEl.innerHTML = '<div class="vimeo-placeholder"></div>';
   }
