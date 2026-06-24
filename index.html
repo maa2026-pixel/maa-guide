@@ -76,7 +76,7 @@
   #vimeo-note-wrap { margin-top: 40px; margin-bottom: 10px; }
   .vimeo-note {
     font-size: 13px !important;
-    color: #1a9ea0 !important;
+    color: red !important;
     border: 1px solid #1a9ea0;
     padding: 3px 10px;
     display: inline;
@@ -311,6 +311,13 @@ function showDetail(i) {
 
   document.getElementById('list-view').style.display = 'none';
   document.getElementById('detail-view').style.display = 'block';
+
+  // 注意書きのスタイルを直接設定
+  const note = document.querySelector('.vimeo-note');
+  if (note) {
+    note.style.setProperty('color', 'red', 'important');
+    note.style.setProperty('font-size', '13px', 'important');
+  }
   window.currentIndex = i;
 
   const prev = works[i - 1];
