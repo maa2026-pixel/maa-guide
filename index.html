@@ -25,77 +25,27 @@
   }
   li:last-child a { border-bottom: none; }
   li a:active { background: #f0f0f0; }
-  .num {
-    font-size: 14px;
-    color: #888;
-    min-width: 24px;
-  }
+  .num { font-size: 14px; color: #888; min-width: 24px; }
   .title-text { flex: 1; }
   #detail-view { background: #fff; min-height: 100vh; padding-bottom: 40px; }
-  #detail-header {
-    background: #1a9ea0;
-    padding: 16px 20px;
-  }
-  #detail-header h2 {
-    font-size: 18px;
-    font-weight: 700;
-    color: #fff;
-    letter-spacing: 0.05em;
-  }
-  #font-toggle {
-    display: flex;
-    justify-content: flex-end;
-    padding: 10px 20px 0;
-    gap: 8px;
-  }
+  #detail-header { background: #1a9ea0; padding: 16px 20px; }
+  #detail-header h2 { font-size: 18px; font-weight: 700; color: #fff; letter-spacing: 0.05em; }
+  #font-toggle { display: flex; justify-content: flex-end; padding: 10px 20px 0; gap: 8px; }
   #font-toggle button {
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background: #fff;
-    color: #555;
-    padding: 4px 12px;
-    cursor: pointer;
-    font-size: 13px;
+    border: 1px solid #ccc; border-radius: 4px; background: #fff;
+    color: #555; padding: 4px 12px; cursor: pointer; font-size: 13px;
   }
-  #font-toggle button.active {
-    background: #1a9ea0;
-    color: #fff;
-    border-color: #1a9ea0;
-  }
+  #font-toggle button.active { background: #1a9ea0; color: #fff; border-color: #1a9ea0; }
   #detail-body { padding: 24px 20px; }
-  #detail-body p {
-    font-size: 15px;
-    line-height: 1.8;
-    color: #333;
-    white-space: pre-wrap;
-  }
+  #detail-body p { font-size: 15px; line-height: 1.8; color: #333; white-space: pre-wrap; }
   body.large #detail-body p { font-size: 19px; }
-  .vimeo-wrap {
-    margin-bottom: 24px;
-  }
-  .vimeo-wrap iframe {
-    width: 100%;
-    border-radius: 6px;
-    display: block;
-  }
-  .vimeo-placeholder {
-    width: 100%;
-    height: 200px;
-    background: #ddd;
-    border-radius: 6px;
-  }
+  .vimeo-wrap { margin-bottom: 24px; }
+  .vimeo-placeholder { width: 100%; height: 200px; background: #ddd; border-radius: 6px; }
   #back-btn {
-    display: block;
-    margin: 32px 20px 20px;
-    padding: 12px;
-    text-align: center;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 14px;
-    color: #555;
-    background: none;
-    width: calc(100% - 40px);
-    cursor: pointer;
+    display: block; margin: 32px 20px 20px; padding: 12px;
+    text-align: center; border: 1px solid #ccc; border-radius: 6px;
+    font-size: 14px; color: #555; background: none;
+    width: calc(100% - 40px); cursor: pointer;
   }
   #back-btn:active { background: #f0f0f0; }
 </style>
@@ -166,105 +116,105 @@ const works = [
 千年という時間の途中にある。
 
 ――完成を知る者は、まだ誰もいない。`,
-    vimeo: `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1204110946?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="202606月明洞写真展説明0"></iframe></div>`
+    vimeoId: "1204110946", vimeoPad: "56.25%", vimeoTitle: "202606月明洞写真展説明0"
   },
   {
     num: null,
     title: "月明洞の概要",
     text: `かつては水もなく「蛙も逃げ出す」とまで言われた、荒れた寂しい山奥でした。そこが、シャベル一つから始めた30年以上に及ぶ開発によって、世界中から年間100万人が集まる理想郷になりました。元の地形を活かして開発したため、自然な秩序と調和が美しく、神秘的で、勇壮な自然聖殿として建築されました。千年を見据えて自然石で積まれた岩の造景は5度の崩落を経て6度目に完成しましたが、計り知れない情熱と執念によってついに実現しました。月明洞の全体の広さはおよそ東京ドーム35個分に相当します。`,
-    vimeo: `<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1204113356?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="202606月明洞写真展説明1._月明洞の概要mp4"></iframe></div>`
+    vimeoId: "1204113356", vimeoPad: "75%", vimeoTitle: "202606月明洞写真展説明1._月明洞の概要mp4"
   },
   {
     num: 1,
     title: "月明洞の地形",
     text: `月明洞地域は、朝鮮半島の最高峰である白頭（ペクトゥ）山から背骨のように伸びている太白（テベク）山脈の流れの先端に位置しています。月明洞を中心に、周囲にある山脈がちょうど花びらのように幾層にも及んで取り囲んでいます。東は日が登るインデ山、西は日の沈むテドゥン山に挟まれており、月明洞を取り囲む8キロメートル四方の山脈の地形が龍、鷲、人、花などの形象を成しています。変化に富んだ稜線が様々な造形美を織りなしています。`,
-    vimeo: `<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1204115024?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="202606月明洞写真展タイトル2_月明洞の地形"></iframe></div>`padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1204117669?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="202606月明洞写真展タイトル4_月明洞の様子"></iframe></div>`
+    vimeoId: "1204115024", vimeoPad: "75%", vimeoTitle: "202606月明洞写真展タイトル2_月明洞の地形"
   },
   {
     num: 2,
     title: "噴火口の形象",
     text: `月明洞は、中央の広場を中心に「楕円形の噴火口」の形をしています。一般的に噴火口は底が深く、入り口もないため、遠くから鑑賞するのみで、人が中に入る場所として開発することはできません。しかし月明洞は「入り口のある噴火口」なので開発ができました。東側の稜線から西側の稜線までが500メートル、南側から北側までの稜線が300メートルです。この寸法は自然界で最も安定的で美しいとされる「黄金比率」に合致しています。また、大きすぎず小さすぎない適度な広さを保っています。地形全体がまるで芸術作品のようです。`,
-    vimeo: `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1204116265?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="202606月明洞写真展タイトル3_噴火口"></iframe></div>`padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1204116265?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="202606月明洞写真展タイトル3_噴火口"></iframe></div>`
+    vimeoId: "1204116265", vimeoPad: "56.25%", vimeoTitle: "202606月明洞写真展タイトル3_噴火口"
   },
   {
     num: 3,
     title: "月明洞の様子",
     text: `この場所は1970年代まで電気さえも通っておらず、月が明るい村と書いてタルバッコルと呼ばれるほど寂しい山奥でした。しかし、開発を30年以上続け、今では年間100万人が訪問する世界的な名所となりました。芝生は2万人、岩の造景や運動場まで含めると全体で3〜4万人が収容できます。人と岩々の大きさを比較してスケールの大きさを感じることができます。`,
-    vimeo: `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1204117669?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="202606月明洞写真展タイトル4_月明洞の様子"></iframe></div>`padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1204117669?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="202606月明洞写真展タイトル4_月明洞の様子"></iframe></div>`
+    vimeoId: "1204117669", vimeoPad: "56.25%", vimeoTitle: "202606月明洞写真展タイトル4_月明洞の様子"
   },
   {
     num: 4,
     title: "月明湖",
     text: `かつてこの場所は水が少なく雨水を溜めて稲を育てる田んぼでしたが、今は豊かな水を湛える広大な湖となりました。静穏な姿の湖とその中に佇む趣深い八角亭が調和して幻想的です。湖の奥行きで最も長いところは約70〜80mあります。溜まっている水のように見えますが、山の上から流れてくる全ての水が、湖を通って流れています。ちょうど部屋の中に水を汲んでおいたように月明洞の湿度調節の役割を果たしています。夏は人々が童心に帰って水遊びできる1000人規模の野外プールに、冬は氷が張ってスケートリンクにもなり、船を浮かべたり、雪が積もる風景を見る時は神聖な静寂さが心を清らかにします。`,
-    vimeo: `<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1204118849?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="202606月明洞写真展タイトル5_月明湖(ウォルミョンコ)"></iframe></div>`padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1204118849?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="202606月明洞写真展タイトル5_月明湖(ウォルミョンコ)"></iframe></div>`
+    vimeoId: "1204118849", vimeoPad: "75%", vimeoTitle: "202606月明洞写真展タイトル5_月明湖(ウォルミョンコ)"
   },
   {
     num: 5,
     title: "開発前の姿",
     text: `開発前のこの場所は木も岩もなく狭い谷間に小さな畑がある寂しい村でした。道も悪く、土地は荒れ放題で、ジャングルのように草木が生い茂り、傾斜だらけで平地も少ない場所でした。ノミやシラミ、蚊も多く、地獄のような苦しみに耐える生活でした。水が全く出ない地域であったため蛙も逃げ出す場所と言われたほどです。山に囲まれているので狭く息苦しく、住む人みんなここから出ていくことだけが望みでした。`,
-    vimeo: ""
+    vimeoId: "", vimeoPad: "", vimeoTitle: ""
   },
   {
     num: 6,
     title: "開発後の姿",
     text: `月明洞は、開発前と開発後ではまるで別世界です。
 かつて人々に見捨てられていた一つの谷あいは、自然に逆らうのではなく、その地形や環境と調和しながら、長い歳月をかけて生まれ変わりました。この場所は「自然聖殿」と呼ばれています。しかし、それは単に「自然の中にある聖殿」という意味ではありません。山を壁とし、空を天井とする、自然そのものを聖殿として捉えた空間です。一般的な聖殿の中心には礼拝堂がありますが、月明洞における礼拝堂は広大な芝生の斜面です。さらに大きな視点で見れば、月明洞全体を一つの礼拝堂として捉えることもできます。写真左端に見える記念館は、講壇をモチーフとして建てられました。その屋上から全体を見渡しながら説教を行うと、月明洞全体が壮大な礼拝堂となります。この礼拝堂の中には滝が流れ、サッカーができる広場があり、湖では泳ぐこともできます。どんな建築物とも比較にならない前代未聞のスケールだと言えます。`,
-    vimeo: `<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1204120508?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="202606月明洞写真展タイトル 6開発後の姿"></iframe></div>`padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1204120508?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="202606月明洞写真展タイトル 6開発後の姿"></iframe></div>`
+    vimeoId: "1204120508", vimeoPad: "75%", vimeoTitle: "202606月明洞写真展タイトル 6開発後の姿"
   },
   {
     num: 7,
     title: "聖霊道",
     text: `月明洞の東西南北に伸びる道のうち、西側の道が「聖霊道」です。アスファルト道のS字ラインの美しさ、西側に沈む夕日が大変美しく見える道の特徴を踏まえ、聖書に登場する天母・聖霊を象徴する道としてこのように名付けられました。以前あった道は、幅も狭く直線的で傾斜の激しい舗装されてない山道でしたが、地形に合わせてS字カーブを描くゆるやかな傾斜の道に開発しました。初めは砂利道で作ったところ雨に流されてしまい維持管理が難しく、最終的にアスファルトで舗装し、利便性も増すようになりました。この道を通って深い谷を緩やかに下ると、谷を吹き抜ける風が心地よく、視線の先にはテドゥン山の勇壮な岩の絶壁を仰ぐことができます。`,
-    vimeo: ""
+    vimeoId: "", vimeoPad: "", vimeoTitle: ""
   },
   {
     num: 8,
     title: "聖霊の滝の東屋・聖霊の滝",
     text: `聖霊の滝は、山の小さな谷の地形を生かして作られた壮大な岩と松の造景です。高さ23mにもなる岩の造景のあちこちに松の巨木が植えられており、大きいものは幹の太さが直径100㎝を超えます。
 左右を巨大な岩に囲まれるように設計された滝つぼは22mの奥行きがあるプールとなっています。全体の形は滝の左右に柔らかい曲線を描いており、聖書に登場する天母・聖霊を象徴する滝として、女性らしさが感じられます。この滝は、神様の滝の対として構想されました。岩の造景の中を歩く絶壁の道を通って滝の上部に上がると、堅牢な木材と石柱で建てられた東屋が佇んでいますが、ここから月明洞やテドゥン山の絶景を一望することが出来ます。聖霊の滝の前では人々が楽しく食事もできるので、別名「宴会場」とも呼ばれています。`,
-    vimeo: ""
+    vimeoId: "", vimeoPad: "", vimeoTitle: ""
   },
   {
     num: 9,
     title: "運動場",
     text: `64m×100mの国際規格のサッカーグラウンドです。山に挟まれた狭い谷間を、硬い岩盤を少しずつ削って広げながら完成しました。広すぎず狭すぎず、適当な広さを保っています。毎年、世界中から多くの人々が集まって、平和を目的としたサッカーやバレーボール、テニス、バスケットボールなどの国際大会が開催されています。スポーツをするときに人々が怪我をしないように小さな石1つないように真心を込めて管理されています。この運動場は昔から一度雨が降ると大きな水たまりになって使用することが出来なかったので、中心部分を少し高めた構造にし、土を入れ替えて排水の問題を解決するようになりました。`,
-    vimeo: `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1204097425?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="202606月明洞写真展タイトル 10運動場"></iframe></div>`padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1204097425?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="202606月明洞写真展タイトル 10運動場"></iframe></div>`
+    vimeoId: "1204097425", vimeoPad: "56.25%", vimeoTitle: "202606月明洞写真展タイトル 10運動場"
   },
   {
     num: 10,
     title: "芝生",
     text: `月明洞には広々として美しい芝生があります。2万人を収容することができる広大な芝生の広場は自然の聖殿として構想されました。硬い土でできた急傾斜の斜面に、芝を植え、自生させることは困難を極めましたが、絶え間ない労苦と努力によって実現されました。谷の傾斜に手を加えずにそのまま残したことで、音が奥までよく響く天然の音響ホールとなりました。合唱大会など、国際的な文化芸術イベントの会場としても使用され、雪が積もる冬には、老若男女ともにソリをして楽しむ声で溢れます。広々とした空間と穏やかな景観は訪れる人の心を落ち着かせ、静かに自分自身を見つめ、深い祈りをしたくなるような場所です。`,
-    vimeo: ""
+    vimeoId: "", vimeoPad: "", vimeoTitle: ""
   },
   {
     num: 11,
     title: "神様の滝と東屋",
     text: `神様の滝は、かつて水の流れもない小さな谷だった急斜面に、20年にわたる構想の末に完成した滝です。滝の頂には青い瓦屋根の東屋が凛と佇み、その直下を白い水流が岩肌を打ちながら豪快に流れ下ります。この滝は神様の雄大さと力強さを象徴する滝として造られ、全体から男性的で勇壮な印象が感じられます。滝の中心となる険しい谷を表現するため、薄く長い自然石を選び積み上げました。それにより険しさの中にも神秘的な美しさが表現されています。高さ13メートルから注がれる水は、最上部では広く流れ、途中で一か所へと集まり、再び自然な姿で流れ落ちていきます。また、絶壁のあちこちから湧き出るように水があふれ出し、見る角度によって異なる表情を見せます。`,
-    vimeo: ""
+    vimeoId: "", vimeoPad: "", vimeoTitle: ""
   },
   {
     num: 12,
     title: "ラクダ岩",
     text: `500t程になる巨大なラクダの形象をした自然石です。芝生の端に位置し、段ボール箱一つくらいの大きさの岩が地表から飛び出していたので20日余り掘ったところ、その姿が現れました。月明洞は5つの谷から成る星の形をしているため、このラクダ岩は東方の三博士たちがラクダに乗り、星の導きでイエスの誕生を祝ったという聖書の逸話を連想させます。これほど姿が似ている岩がこの場所から掘り出されたことは不思議でなりません。`,
-    vimeo: ""
+    vimeoId: "", vimeoPad: "", vimeoTitle: ""
   },
   {
     num: 13,
     title: "自画像岩",
     text: `この岩は人の顔の形象に見えることから「自画像岩」と呼ばれています。目、鼻、口、顔の輪郭がはっきりと見られますが、人が彫刻したのではなく、長い歳月をかけて、雨、風、雷によって自然のままに削られて今の姿になりました。雑木林を掃除していた時、岩にかかっていた草木を取り除いたところ突如この岩が発見されました。人間の身長を超える大きさを持ちながら、静かにたたずむその姿には不思議な存在感があります。まるで自然が自ら描いた彫刻作品のようであり、その神秘的な造形は訪れる人々に驚きと感動を与えます。`,
-    vimeo: ""
+    vimeoId: "", vimeoPad: "", vimeoTitle: ""
   },
   {
     num: 14,
     title: "月明洞のパノラマ",
     text: ``,
-    vimeo: ""
+    vimeoId: "", vimeoPad: "", vimeoTitle: ""
   },
   {
     num: 15,
     title: "野心作",
     text: `全長240メートル、高さ40メートルを誇る「野心作」は、月明洞を代表する岩の造景作品です。野心作という名には「神の自負心を表す」という意味が込められており、造景全体は神の権威を象徴する王座をモチーフに造られました。下段は座面のように広く平らに、上段は背もたれのように巨大な岩がそびえ立ち、見る者を圧倒する景観を生み出しています。しかし、その道のりは決して易しくなく、積み上げた岩が何度も崩れ落ちる困難に直面しながらも、幾度となく挑戦を重ねて完成へと至りました。一つとして同じ形のない自然石を、それぞれ個性を持つ人のように見立てて積み上げられたこの造景の中央には、「命を愛しなさい」と刻まれた石が据えられています。`,
-    vimeo: ""
+    vimeoId: "", vimeoPad: "", vimeoTitle: ""
   },
 ];
 
@@ -283,8 +233,8 @@ function showDetail(i) {
   document.getElementById('detail-text').textContent = w.text;
 
   const vimeoEl = document.getElementById('detail-vimeo');
-  if (w.vimeo) {
-    vimeoEl.innerHTML = w.vimeo;
+  if (w.vimeoId) {
+    vimeoEl.innerHTML = `<div style="padding:${w.vimeoPad} 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/${w.vimeoId}?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="${w.vimeoTitle}"></iframe></div>`;
     if (!document.querySelector('script[src="https://player.vimeo.com/api/player.js"]')) {
       const s = document.createElement('script');
       s.src = 'https://player.vimeo.com/api/player.js';
