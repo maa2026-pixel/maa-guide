@@ -226,7 +226,7 @@ function showDetail(i) {
     titleEl.innerHTML = titlePrefix + w.title;
   }
   const textEl = document.getElementById('detail-text');
-  textEl.textContent = w.text;
+  textEl.textContent = w.text.trim();
   textEl.style.fontFamily = w.mincho ? "'Shippori Mincho', serif" : '';
 
   const vimeoEl = document.getElementById('detail-vimeo');
