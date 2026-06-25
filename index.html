@@ -170,14 +170,14 @@
       <text x="277" y="52" text-anchor="middle" font-size="9" fill="#aaa">10</text>
 
       <!-- 7上/9下 x=302 -->
-      <rect id="map-2a" x="302" y="8"  width="44" height="38" fill="none" stroke="#ccc" stroke-width="0.5" vector-effect="non-scaling-stroke"/>
-      <text x="324" y="31" text-anchor="middle" font-size="9" fill="#aaa">2</text>
+      <rect id="map-7a" x="302" y="8"  width="44" height="38" fill="none" stroke="#ccc" stroke-width="0.5" vector-effect="non-scaling-stroke"/>
+      <text x="324" y="31" text-anchor="middle" font-size="9" fill="#aaa">7</text>
       <rect id="map-9"  x="302" y="50" width="44" height="38" fill="none" stroke="#ccc" stroke-width="0.5" vector-effect="non-scaling-stroke"/>
       <text x="324" y="73" text-anchor="middle" font-size="9" fill="#aaa">9</text>
 
       <!-- 7tall上/8下 x=352 -->
-      <rect id="map-2b" x="352" y="2"  width="44" height="44" fill="none" stroke="#ccc" stroke-width="0.5" vector-effect="non-scaling-stroke"/>
-      <text x="374" y="28" text-anchor="middle" font-size="9" fill="#aaa">2</text>
+      <rect id="map-7b" x="352" y="2"  width="44" height="44" fill="none" stroke="#ccc" stroke-width="0.5" vector-effect="non-scaling-stroke"/>
+      <text x="374" y="28" text-anchor="middle" font-size="9" fill="#aaa">7</text>
       <rect id="map-8"  x="352" y="50" width="44" height="38" fill="none" stroke="#ccc" stroke-width="0.5" vector-effect="non-scaling-stroke"/>
       <text x="374" y="73" text-anchor="middle" font-size="9" fill="#aaa">8</text>
 
@@ -346,7 +346,7 @@ function showDetail(i) {
   });
   const numStr = w.num !== null ? String(w.num) : null;
   if (numStr) {
-    const targets = document.querySelectorAll(`#map-${CSS.escape(numStr)}, #map-${CSS.escape(numStr)}a, #map-${CSS.escape(numStr)}b`);
+    const targets = document.querySelectorAll(`#map-${CSS.escape(numStr)}`);
     targets.forEach(r => {
       r.setAttribute('fill', 'rgba(26,158,160,0.3)');
       r.setAttribute('stroke', '#1a9ea0');
