@@ -29,7 +29,7 @@
   }
   li:last-child a { border-bottom: none; }
   li a:active { background: #f0f0f0; }
-  .num { font-size: 16px; color: #1a9ea0; min-width: 24px; font-family: 'Shippori Mincho', serif; }
+  .num { font-size: 14px; color: #1a9ea0; min-width: 24px; font-family: 'Shippori Mincho', serif; }
   .num:empty { min-width: 0; }
   li a.no-num { padding-left: 16px; gap: 0; }
   .title-text { flex: 1; font-family: 'Shippori Mincho', serif; }
@@ -281,7 +281,7 @@ works.forEach((w, i) => {
   const li = document.createElement('li');
   const numHtml = w.num !== null ? `<span class="num">${w.num}</span>` : `<span class="num"></span>`;
   const noNum = w.num === null ? ' class="no-num"' : '';
-  li.innerHTML = `<a href="#"${noNum} onclick="showDetail(${i}); return false;">${numHtml}<span class="title-text">${w.title}</span><span class="material-symbols-outlined" style="font-size:16px;color:#ccc;">arrow_forward_ios</span></a>`;
+  li.innerHTML = `<a href="#"${noNum} onclick="showDetail(${i}); return false;">${numHtml}<span class="title-text">${w.title}</span><span class="material-symbols-outlined" style="font-size:16px;color:#ccc;margin-right:-20px;">arrow_forward_ios</span></a>`;
   list.appendChild(li);
 });
 
