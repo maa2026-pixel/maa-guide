@@ -96,6 +96,22 @@
   #map-container {
     position: relative;
   }
+  #map-fade-left, #map-fade-right {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    z-index: 1;
+    pointer-events: none;
+  }
+  #map-fade-left {
+    left: 0;
+    background: linear-gradient(to right, #fff 0%, transparent 100%);
+  }
+  #map-fade-right {
+    right: 0;
+    background: linear-gradient(to left, #fff 0%, transparent 100%);
+  }
   #map-container::before, #map-container::after {
     content: '';
     position: absolute;
@@ -161,6 +177,8 @@
     </div>
   </div>
   <div id="map-container">
+  <div id="map-fade-left"></div>
+  <div id="map-fade-right"></div>
   <div id="map-wrap">
     <svg id="map-svg" viewBox="0 0 760 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
       <!-- 14: 11・12と同じサイズ(44×38) x=4 -->
