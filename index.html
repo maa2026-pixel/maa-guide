@@ -358,23 +358,22 @@ function showDetail(i) {
       if (t) t.setAttribute('fill', '#1a9ea0');
     });
     // 該当番号が見える位置にスクロール
-    const targetId = numStr === '7' ? 'map-7a' : `map-${numStr}`;
-    const target = document.getElementById(targetId);
-    if (target) {
-      const svg = document.getElementById('map-svg');
-      const wrap = document.getElementById('map-wrap');
-      const svgRect = svg.getBoundingClientRect();
-      const targetRect = target.getBoundingClientRect();
-      const wrapWidth = wrap.clientWidth;
-      const targetCenterX = targetRect.left - svgRect.left + targetRect.width / 2;
-      // 右端エリア（1,2,3,4）は右端から表示
-      const rightNums = ['1','2','3','4','5-1'];
-      if (rightNums.includes(numStr)) {
-        wrap.scrollLeft = wrap.scrollWidth;
-      } else {
-        wrap.scrollLeft = targetCenterX - wrapWidth / 2;
+    setTimeout(() => {
+      const targetId = numStr === '7' ? 'map-7a' : `map-${numStr}`;
+      const target = document.getElementById(targetId);
+      if (target) {
+        const wrap = document.getElementById('map-wrap');
+        const svg = document.getElementById('map-svg');
+        // viewBox座標からスクロール位置を計算
+        const x = parseFloat(target.getAttribute('x'));
+        const w = parseFloat(target.getAttribute('width'));
+        const viewBoxWidth = 760;
+        const svgRenderedWidth = svg.scrollWidth;
+        const scale = svgRenderedWidth / viewBoxWidth;
+        const targetCenterPx = (x + w / 2) * scale;
+        wrap.scrollLeft = targetCenterPx - wrap.clientWidth / 2;
       }
-    }
+    }, 100);
   }
 
   window.currentIndex = i;
