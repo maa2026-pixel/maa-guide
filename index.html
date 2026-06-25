@@ -384,6 +384,13 @@ function showDetail(i) {
     prevBtn.style.visibility = 'visible';
     const prevPrefix = prev2.num !== null ? prev2.num + '　' : '';
     document.getElementById('nav-prev-title').textContent = prevPrefix + prev2.title;
+    prevBtn.querySelector('.nav-label').textContent = '前のページ';
+    prevBtn.onclick = () => movePage(-1);
+  } else if (w.hideTitle) {
+    prevBtn.style.visibility = 'visible';
+    prevBtn.querySelector('.nav-label').textContent = 'ホームに戻る';
+    prevBtn.querySelector('.nav-title') && (prevBtn.querySelector('.nav-title').textContent = '');
+    prevBtn.onclick = () => showList();
   } else {
     prevBtn.style.visibility = 'hidden';
   }
