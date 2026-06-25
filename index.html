@@ -361,19 +361,19 @@ function showDetail(i) {
     // 該当番号が見える位置にスクロール
     setTimeout(() => {
       window.scrollTo(0, 0);
+      const wrap = document.getElementById('map-wrap');
+      const viewBoxWidth = 760;
+      const svgW = 860;
+      const scale = svgW / viewBoxWidth;
       const targetId = numStr === '7' ? 'map-7a' : `map-${numStr}`;
       const target = document.getElementById(targetId);
       if (target) {
-        const wrap = document.getElementById('map-wrap');
-        const viewBoxWidth = 760;
-        const svgRenderedWidth = 860;
-        const scale = svgRenderedWidth / viewBoxWidth;
         const x = parseFloat(target.getAttribute('x'));
         const tw = parseFloat(target.getAttribute('width'));
-        const targetCenterPx = (x + tw / 2) * scale;
-        wrap.scrollLeft = targetCenterPx - wrap.clientWidth / 2;
+        const centerPx = (x + tw / 2) * scale;
+        wrap.scrollLeft = Math.max(0, centerPx - wrap.clientWidth / 2);
       }
-    }, 50);
+    }, 200);
   }
 
   window.currentIndex = i;
