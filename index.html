@@ -365,10 +365,9 @@ function showDetail(i) {
       const target = document.getElementById(targetId);
       if (target) {
         const wrap = document.getElementById('map-wrap');
-        const svg = document.getElementById('map-svg');
         const viewBoxWidth = 760;
-        const svgW = svg.getBoundingClientRect().width;
-        const scale = svgW / viewBoxWidth;
+        const svgRenderedWidth = 860;
+        const scale = svgRenderedWidth / viewBoxWidth;
         const x = parseFloat(target.getAttribute('x'));
         const tw = parseFloat(target.getAttribute('width'));
         const targetCenterPx = (x + tw / 2) * scale;
