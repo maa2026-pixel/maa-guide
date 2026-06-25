@@ -334,7 +334,10 @@ function showDetail(i) {
 
   document.getElementById('list-view').style.display = 'none';
   document.getElementById('detail-view').style.display = 'block';
-  document.getElementById('map-wrap').style.display = w.noMap ? 'none' : 'flex';
+  document.getElementById('map-wrap').style.visibility = w.noMap ? 'hidden' : 'visible';
+  document.getElementById('map-wrap').style.height = w.noMap ? '0' : '';
+  document.getElementById('map-wrap').style.padding = w.noMap ? '0' : '';
+  document.getElementById('map-wrap').style.borderBottom = w.noMap ? 'none' : '';
   document.querySelectorAll('#map-svg rect').forEach(r => {
     r.setAttribute('fill', 'none');
     r.setAttribute('stroke', '#ccc');
@@ -357,16 +360,17 @@ function showDetail(i) {
     });
     // 該当番号が見える位置にスクロール
     setTimeout(() => {
+      window.scrollTo(0, 0);
       const targetId = numStr === '7' ? 'map-7a' : `map-${numStr}`;
       const target = document.getElementById(targetId);
       if (target) {
         const wrap = document.getElementById('map-wrap');
         const viewBoxWidth = 760;
-        const renderedWidth = Math.max(wrap.scrollWidth, 860);
+        const renderedWidth = wrap.scrollWidth;
         const scale = renderedWidth / viewBoxWidth;
         const x = parseFloat(target.getAttribute('x'));
-        const w = parseFloat(target.getAttribute('width'));
-        const targetCenterPx = (x + w / 2) * scale;
+        const w2 = parseFloat(target.getAttribute('width'));
+        const targetCenterPx = (x + w2 / 2) * scale;
         const rightNums = ['1','2','3','4','5-1','5-2','6'];
         if (rightNums.includes(numStr)) {
           wrap.scrollLeft = wrap.scrollWidth;
@@ -374,31 +378,28 @@ function showDetail(i) {
           wrap.scrollLeft = targetCenterPx - wrap.clientWidth / 2;
         }
       }
-    }, 100);
+    }, 50);
   }
 
   window.currentIndex = i;
-
-  const prev = works[i - 1];
-  const next = works[i + 1];
+  const prev2 = works[i - 1];
+  const next2 = works[i + 1];
   const prevBtn = document.getElementById('nav-prev-btn');
   const nextBtn = document.getElementById('nav-next-btn');
-  if (prev) {
+  if (prev2) {
     prevBtn.style.visibility = 'visible';
-    const prevPrefix = prev.num !== null ? prev.num + '　' : '';
-    document.getElementById('nav-prev-title').textContent = prevPrefix + prev.title;
+    const prevPrefix = prev2.num !== null ? prev2.num + '　' : '';
+    document.getElementById('nav-prev-title').textContent = prevPrefix + prev2.title;
   } else {
     prevBtn.style.visibility = 'hidden';
   }
-  if (next) {
+  if (next2) {
     nextBtn.style.visibility = 'visible';
-    const nextPrefix = next.num !== null ? next.num + '　' : '';
-    document.getElementById('nav-next-title').textContent = nextPrefix + next.title;
+    const nextPrefix = next2.num !== null ? next2.num + '　' : '';
+    document.getElementById('nav-next-title').textContent = nextPrefix + next2.title;
   } else {
     nextBtn.style.visibility = 'hidden';
   }
-
-  window.scrollTo(0, 0);
 }
 
 function movePage(dir) {
