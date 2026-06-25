@@ -428,9 +428,10 @@ function setFont(size) {
 
 // マップドラッグスクロール
 const mapWrap = document.getElementById('map-wrap');
-let isDown = false, startX, scrollLeft;
+let isDown = false, startX, scrollLeft, moved = false;
 mapWrap.addEventListener('mousedown', e => {
   isDown = true;
+  moved = false;
   startX = e.pageX - mapWrap.offsetLeft;
   scrollLeft = mapWrap.scrollLeft;
   mapWrap.style.cursor = 'grabbing';
@@ -441,9 +442,28 @@ mapWrap.addEventListener('mousemove', e => {
   if (!isDown) return;
   e.preventDefault();
   const x = e.pageX - mapWrap.offsetLeft;
-  mapWrap.scrollLeft = scrollLeft - (x - startX);
+  const walk = x - startX;
+  if (Math.abs(walk) > 3) moved = true;
+  mapWrap.scrollLeft = scrollLeft - walk;
 });
 mapWrap.style.cursor = 'grab';
+
+// 配置図の四角クリックでページ遷移
+function setupMapClicks() {
+  document.querySelectorAll('#map-svg rect').forEach(r => {
+    const id = r.getAttribute('id');
+    if (!id) return;
+    const numStr = id.replace('map-', '').replace(/[ab]$/, '');
+    const idx = works.findIndex(w => w.num !== null && String(w.num) === numStr);
+    if (idx === -1) return;
+    r.style.cursor = 'pointer';
+    r.addEventListener('click', (e) => {
+      if (moved) return;
+      showDetail(idx);
+    });
+  });
+}
+setupMapClicks();
 
 function showList() {
   document.getElementById('detail-view').style.display = 'none';
