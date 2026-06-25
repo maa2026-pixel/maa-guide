@@ -448,7 +448,18 @@ mapWrap.addEventListener('mousemove', e => {
 });
 mapWrap.style.cursor = 'grab';
 
-// 配置図の四角クリックでページ遷移
+// タッチでのスワイプ・タップ区別
+let touchStartX = 0, touchStartY = 0, touchMoved = false;
+mapWrap.addEventListener('touchstart', e => {
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+  touchMoved = false;
+}, { passive: true });
+mapWrap.addEventListener('touchmove', e => {
+  const dx = Math.abs(e.touches[0].clientX - touchStartX);
+  const dy = Math.abs(e.touches[0].clientY - touchStartY);
+  if (dx > 10 || dy > 10) touchMoved = true;
+}, { passive: true });
 function setupMapClicks() {
   document.querySelectorAll('#map-svg rect').forEach(r => {
     const id = r.getAttribute('id');
@@ -457,6 +468,19 @@ function setupMapClicks() {
     const idx = works.findIndex(w => w.num !== null && String(w.num) === numStr);
     if (idx === -1) return;
     r.style.cursor = 'pointer';
+    let rectTouchMoved = false;
+    let rectTouchX = 0;
+    r.addEventListener('touchstart', e => {
+      rectTouchX = e.touches[0].clientX;
+      rectTouchMoved = false;
+    }, { passive: true });
+    r.addEventListener('touchmove', e => {
+      if (Math.abs(e.touches[0].clientX - rectTouchX) > 10) rectTouchMoved = true;
+    }, { passive: true });
+    r.addEventListener('touchend', e => {
+      if (rectTouchMoved) return;
+      showDetail(idx);
+    });
     r.addEventListener('click', (e) => {
       if (moved) return;
       showDetail(idx);
