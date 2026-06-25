@@ -365,10 +365,15 @@ function showDetail(i) {
       const wrap = document.getElementById('map-wrap');
       const svgRect = svg.getBoundingClientRect();
       const targetRect = target.getBoundingClientRect();
-      const svgWidth = svgRect.width;
       const wrapWidth = wrap.clientWidth;
       const targetCenterX = targetRect.left - svgRect.left + targetRect.width / 2;
-      wrap.scrollLeft = targetCenterX - wrapWidth / 2;
+      // 右端エリア（1,2,3,4）は右端から表示
+      const rightNums = ['1','2','3','4'];
+      if (rightNums.includes(numStr)) {
+        wrap.scrollLeft = wrap.scrollWidth;
+      } else {
+        wrap.scrollLeft = targetCenterX - wrapWidth / 2;
+      }
     }
   }
 
