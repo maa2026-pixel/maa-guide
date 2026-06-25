@@ -93,6 +93,7 @@
     padding: 24px 16px 24px 28px;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    position: relative;
   }
   #map-outer {
     position: relative;
@@ -461,30 +462,37 @@ mapWrap.addEventListener('touchmove', e => {
   if (dx > 10 || dy > 10) touchMoved = true;
 }, { passive: true });
 function setupMapClicks() {
+  const svg = document.getElementById('map-svg');
+  const wrap = document.getElementById('map-wrap');
+
+  // 既存の透明divを削除
+  wrap.querySelectorAll('.map-hit').forEach(el => el.remove());
+
   document.querySelectorAll('#map-svg rect').forEach(r => {
     const id = r.getAttribute('id');
     if (!id) return;
     const numStr = id.replace('map-', '').replace(/[ab]$/, '');
     const idx = works.findIndex(w => w.num !== null && String(w.num) === numStr);
     if (idx === -1) return;
-    r.style.cursor = 'pointer';
-    let rectTouchMoved = false;
-    let rectTouchX = 0;
-    r.addEventListener('touchstart', e => {
-      rectTouchX = e.touches[0].clientX;
-      rectTouchMoved = false;
-    }, { passive: true });
-    r.addEventListener('touchmove', e => {
-      if (Math.abs(e.touches[0].clientX - rectTouchX) > 10) rectTouchMoved = true;
-    }, { passive: true });
-    r.addEventListener('touchend', e => {
-      if (rectTouchMoved) return;
-      showDetail(idx);
-    });
-    r.addEventListener('click', (e) => {
-      if (moved) return;
-      showDetail(idx);
-    });
+
+    // viewBox座標からピクセル座標に変換
+    const viewBoxWidth = 700;
+    const viewBoxHeight = 100;
+    const svgW = svg.clientWidth || 900;
+    const svgH = svg.clientHeight || 120;
+    const scaleX = svgW / viewBoxWidth;
+    const scaleY = svgH / viewBoxHeight;
+
+    const x = parseFloat(r.getAttribute('x')) * scaleX;
+    const y = parseFloat(r.getAttribute('y')) * scaleY;
+    const w = parseFloat(r.getAttribute('width')) * scaleX;
+    const h = parseFloat(r.getAttribute('height')) * scaleY;
+
+    const hit = document.createElement('div');
+    hit.className = 'map-hit';
+    hit.style.cssText = `position:absolute;left:${x + 16}px;top:${y + 24}px;width:${w}px;height:${h}px;cursor:pointer;z-index:3;`;
+    hit.addEventListener('click', () => showDetail(idx));
+    wrap.appendChild(hit);
   });
 }
 setupMapClicks();
