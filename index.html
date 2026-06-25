@@ -363,15 +363,18 @@ function showDetail(i) {
       const target = document.getElementById(targetId);
       if (target) {
         const wrap = document.getElementById('map-wrap');
-        const svg = document.getElementById('map-svg');
-        // viewBox座標からスクロール位置を計算
+        const viewBoxWidth = 760;
+        const renderedWidth = Math.max(wrap.scrollWidth, 860);
+        const scale = renderedWidth / viewBoxWidth;
         const x = parseFloat(target.getAttribute('x'));
         const w = parseFloat(target.getAttribute('width'));
-        const viewBoxWidth = 760;
-        const svgRenderedWidth = svg.scrollWidth;
-        const scale = svgRenderedWidth / viewBoxWidth;
         const targetCenterPx = (x + w / 2) * scale;
-        wrap.scrollLeft = targetCenterPx - wrap.clientWidth / 2;
+        const rightNums = ['1','2','3','4','5-1','5-2','6'];
+        if (rightNums.includes(numStr)) {
+          wrap.scrollLeft = wrap.scrollWidth;
+        } else {
+          wrap.scrollLeft = targetCenterPx - wrap.clientWidth / 2;
+        }
       }
     }, 100);
   }
