@@ -76,9 +76,6 @@
   #vimeo-note {
     font-size: 13px;
     color: #1a9ea0;
-    border: 1px solid #1a9ea0;
-    padding: 10px;
-    text-align: center;
     margin-bottom: 12px;
   }
   .no-content-box {
@@ -206,7 +203,7 @@
     <p id="detail-text"></p>
   </div>
   <div id="vimeo-section">
-    <div id="vimeo-note">音声ガイドはイヤホンでの視聴をお願いいたします。</div>
+    <div id="vimeo-note">※ 音声ガイドはイヤホンでの視聴をお願いいたします。</div>
     <div id="detail-vimeo"></div>
   </div>
   <div id="page-nav">
@@ -314,7 +311,7 @@ function showDetail(i) {
     `;
   } else {
     vimeoSection.innerHTML = `
-      <div id="vimeo-note">音声ガイドはイヤホンでの視聴をお願いいたします。</div>
+      <div id="vimeo-note">※ 音声ガイドはイヤホンでの視聴をお願いいたします。</div>
       <div id="detail-vimeo"></div>
     `;
     const vimeoEl = document.getElementById('detail-vimeo');
