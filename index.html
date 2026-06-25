@@ -92,42 +92,8 @@
     padding: 24px 16px;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-  }
-  #map-container {
-    position: relative;
-  }
-  #map-fade-left, #map-fade-right {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 40px;
-    z-index: 1;
-    pointer-events: none;
-  }
-  #map-fade-left {
-    left: 0;
-    background: linear-gradient(to right, #fff 0%, transparent 100%);
-  }
-  #map-fade-right {
-    right: 0;
-    background: linear-gradient(to left, #fff 0%, transparent 100%);
-  }
-  #map-container::before, #map-container::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 40px;
-    z-index: 1;
-    pointer-events: none;
-  }
-  #map-container::before {
-    left: 0;
-    background: linear-gradient(to right, #fff, transparent);
-  }
-  #map-container::after {
-    right: 0;
-    background: linear-gradient(to left, #fff, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 5%, #000 95%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 5%, #000 95%, transparent 100%);
   }
   #map-svg rect {
     stroke-width: 0.5px;
@@ -177,9 +143,6 @@
       <button id="btn-large" onclick="setFont('large')">大</button>
     </div>
   </div>
-  <div id="map-container">
-  <div id="map-fade-left"></div>
-  <div id="map-fade-right"></div>
   <div id="map-wrap">
     <svg id="map-svg" viewBox="0 0 760 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
       <!-- 14: 11・12と同じサイズ(44×38) x=4 -->
@@ -236,7 +199,6 @@
 
       <text x="616" y="54" text-anchor="start" font-size="8" fill="#aaa" font-family="'Shippori Mincho', serif" letter-spacing="1">作品配置図</text>
     </svg>
-  </div>
   </div>
   <div id="detail-body">
     <div id="detail-title-text"></div>
