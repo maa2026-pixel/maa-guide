@@ -476,15 +476,6 @@ function setupMapClicks() {
 
   wrap.querySelectorAll('.map-hit').forEach(el => el.remove());
 
-  const svgRect = svg.getBoundingClientRect();
-  const wrapRect = wrap.getBoundingClientRect();
-  const vbW = 700;
-  const vbH = 104;
-  const scaleX = svgRect.width / vbW;
-  const scaleY = svgRect.height / vbH;
-  const offsetX = svgRect.left - wrapRect.left + wrap.scrollLeft;
-  const offsetY = svgRect.top - wrapRect.top;
-
   document.querySelectorAll('#map-svg rect').forEach(r => {
     const id = r.getAttribute('id');
     if (!id) return;
@@ -492,10 +483,23 @@ function setupMapClicks() {
     const idx = works.findIndex(w => w.num !== null && String(w.num) === numStr);
     if (idx === -1) return;
 
-    const x = parseFloat(r.getAttribute('x')) * scaleX + offsetX;
-    const y = parseFloat(r.getAttribute('y')) * scaleY + offsetY;
-    const w2 = parseFloat(r.getAttribute('width')) * scaleX;
-    const h2 = parseFloat(r.getAttribute('height')) * scaleY;
+    const pt1 = svg.createSVGPoint();
+    pt1.x = parseFloat(r.getAttribute('x'));
+    pt1.y = parseFloat(r.getAttribute('y'));
+    const pt2 = svg.createSVGPoint();
+    pt2.x = pt1.x + parseFloat(r.getAttribute('width'));
+    pt2.y = pt1.y + parseFloat(r.getAttribute('height'));
+
+    const ctm = svg.getScreenCTM();
+    const wrapRect = wrap.getBoundingClientRect();
+
+    const p1 = pt1.matrixTransform(ctm);
+    const p2 = pt2.matrixTransform(ctm);
+
+    const x = p1.x - wrapRect.left + wrap.scrollLeft;
+    const y = p1.y - wrapRect.top;
+    const w2 = p2.x - p1.x;
+    const h2 = p2.y - p1.y;
 
     const hit = document.createElement('div');
     hit.className = 'map-hit';
