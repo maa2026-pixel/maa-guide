@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>展示ガイド</title>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-8TDGSNHD6V"></script>
 <script>
@@ -12,6 +9,7 @@
   gtag('js', new Date());
   gtag('config', 'G-8TDGSNHD6V');
 </script>
+<meta charset="UTF-8">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,100,0,0&icon_names=arrow_back,arrow_forward,arrow_forward_ios" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -348,11 +346,26 @@ function showDetail(i) {
     const vimeoEl = document.getElementById('detail-vimeo');
     if (w.vimeoId) {
       const ratio = w.vimeoPad === "75%" ? "4/3" : "16/9";
-      vimeoEl.innerHTML = `<div style="aspect-ratio:${ratio};width:100%;"><iframe src="https://player.vimeo.com/video/${w.vimeoId}?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="width:100%;height:100%;" title="${w.vimeoTitle}"></iframe></div>`;
+      vimeoEl.innerHTML = `<div style="aspect-ratio:${ratio};width:100%;"><iframe id="vimeo-iframe" src="https://player.vimeo.com/video/${w.vimeoId}?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="width:100%;height:100%;" title="${w.vimeoTitle}"></iframe></div>`;
+      const loadVimeoTracking = () => {
+        const iframe = document.getElementById('vimeo-iframe');
+        if (!iframe) return;
+        const player = new Vimeo.Player(iframe);
+        const title = w.num !== null ? `${w.num} ${w.title}` : w.title;
+        player.on('play', () => {
+          if (typeof gtag !== 'undefined') gtag('event', 'video_start', { video_title: title });
+        });
+        player.on('ended', () => {
+          if (typeof gtag !== 'undefined') gtag('event', 'video_complete', { video_title: title });
+        });
+      };
       if (!document.querySelector('script[src="https://player.vimeo.com/api/player.js"]')) {
         const s = document.createElement('script');
         s.src = 'https://player.vimeo.com/api/player.js';
+        s.onload = () => setTimeout(loadVimeoTracking, 500);
         document.body.appendChild(s);
+      } else {
+        setTimeout(loadVimeoTracking, 500);
       }
     } else {
       vimeoEl.innerHTML = '<div class="vimeo-placeholder"></div>';
@@ -420,6 +433,14 @@ function showDetail(i) {
         wrap.scrollLeft = Math.max(0, centerPx - wrap.clientWidth / 2);
       }
     }, 200);
+  }
+
+  // GA4にページビューを送信
+  if (typeof gtag !== 'undefined') {
+    gtag('event', 'page_view', {
+      page_title: w.num !== null ? `${w.num} ${w.title}` : w.title,
+      page_location: window.location.href + '#' + (w.num !== null ? w.num : w.title)
+    });
   }
 
   window.currentIndex = i;
@@ -529,7 +550,14 @@ function setupMapClicks() {
     const hit = document.createElement('div');
     hit.className = 'map-hit';
     hit.style.cssText = `position:absolute;left:${x}px;top:${y}px;width:${w2}px;height:${h2}px;cursor:pointer;z-index:3;`;
-    hit.addEventListener('click', () => showDetail(idx));
+    hit.addEventListener('click', () => {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'map_tap', {
+          item_name: numStr
+        });
+      }
+      showDetail(idx);
+    });
     wrap.appendChild(hit);
   });
 }
