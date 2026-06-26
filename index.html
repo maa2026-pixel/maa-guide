@@ -67,7 +67,7 @@
     color: #bbb; padding: 4px 12px; cursor: pointer; font-size: 13px; font-weight: 300;
   }
   #font-toggle button.active { background: #eee; color: #555; border-color: #ccc; font-weight: 300; }
-  #detail-body { padding: 20px 20px 0; }
+  #detail-body { padding: 20px 20px 0; position: relative; }
   #detail-title-text { font-size: 20px; font-weight: 400; color: #222; margin-bottom: 16px; font-family: 'Shippori Mincho', serif; }
   #detail-num { color: #1a9ea0; }
   #detail-body p { font-size: 15px; line-height: 1.8; color: #333; white-space: pre-wrap; font-weight: 300; margin-bottom: 0; }
@@ -353,11 +353,28 @@ function showDetail(i) {
 
   document.getElementById('list-view').style.display = 'none';
   document.getElementById('detail-view').style.display = 'block';
+  document.getElementById('detail-body').style.paddingTop = w.noMap ? '60px' : '20px';
   document.getElementById('map-wrap').style.visibility = w.noMap ? 'hidden' : 'visible';
   document.getElementById('map-wrap').style.height = w.noMap ? '0' : '';
   document.getElementById('map-wrap').style.padding = w.noMap ? '0' : '';
   document.getElementById('map-wrap').style.borderBottom = w.noMap ? 'none' : '';
-  document.getElementById('anchor-btn-wrap').style.display = (w.noMap || w.noAnchor) ? 'none' : 'flex';
+  const anchorBtn = document.getElementById('anchor-btn-wrap');
+  const detailBody = document.getElementById('detail-body');
+  if (w.noMap) {
+    anchorBtn.style.position = 'absolute';
+    anchorBtn.style.top = '20px';
+    anchorBtn.style.right = '20px';
+    anchorBtn.style.padding = '0';
+    detailBody.style.position = 'relative';
+    detailBody.appendChild(anchorBtn);
+  } else {
+    anchorBtn.style.position = '';
+    anchorBtn.style.top = '';
+    anchorBtn.style.right = '';
+    anchorBtn.style.padding = '0 20px 0';
+    document.getElementById('map-outer').after(anchorBtn);
+  }
+  document.getElementById('anchor-btn-wrap').style.display = w.noAnchor ? 'none' : 'flex';
   document.querySelectorAll('#map-svg rect').forEach(r => {
     r.setAttribute('fill', 'none');
     r.setAttribute('stroke', '#ccc');
