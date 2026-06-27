@@ -358,15 +358,18 @@ function showDetail(i) {
       const ratio = w.vimeoPad === "75%" ? "4/3" : "16/9";
       vimeoEl.innerHTML = `<div style="aspect-ratio:${ratio};width:100%;"><iframe id="vimeo-iframe" src="https://player.vimeo.com/video/${w.vimeoId}?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="width:100%;height:100%;" title="${w.vimeoTitle}"></iframe></div>`;
       const loadVimeoTracking = () => {
-        const iframe = document.getElementById('vimeo-iframe');
-        if (!iframe) return;
-        const player = new Vimeo.Player(iframe);
-        const title = w.num !== null ? `${w.num} ${w.title}` : w.title;
-        player.on('play', () => {
-          if (typeof gtag !== 'undefined') gtag('event', 'video_start', { video_title: title });
-        });
-        player.on('ended', () => {
-          if (typeof gtag !== 'undefined') gtag('event', 'video_complete', { video_title: title });
+        const idle = window.requestIdleCallback || (cb => setTimeout(cb, 200));
+        idle(() => {
+          const iframe = document.getElementById('vimeo-iframe');
+          if (!iframe || typeof Vimeo === 'undefined') return;
+          const player = new Vimeo.Player(iframe);
+          const title = w.num !== null ? `${w.num} ${w.title}` : w.title;
+          player.on('play', () => {
+            if (typeof gtag !== 'undefined') gtag('event', 'video_start', { video_title: title });
+          });
+          player.on('ended', () => {
+            if (typeof gtag !== 'undefined') gtag('event', 'video_complete', { video_title: title });
+          });
         });
       };
       if (!document.querySelector('script[src="https://player.vimeo.com/api/player.js"]')) {
@@ -429,7 +432,6 @@ function showDetail(i) {
     // 該当番号が見える位置にスクロール
     setTimeout(() => {
       window.scrollTo(0, 0);
-      setupMapClicks();
       const wrap = document.getElementById('map-wrap');
       const viewBoxWidth = 700;
       const svgW = 927;
