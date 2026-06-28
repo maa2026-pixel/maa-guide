@@ -224,10 +224,10 @@
       <rect id="map-3"  x="514" y="50" width="44" height="38" fill="none" stroke="#888" stroke-width="0.8" vector-effect="non-scaling-stroke"/>
       <text x="536" y="73" text-anchor="middle" font-size="9" fill="#888">3</text>
 
-      <rect id="map-1"  x="564" y="6"  width="44" height="38" fill="none" stroke="#888" stroke-width="0.8" vector-effect="non-scaling-stroke"/>
-      <text x="586" y="29" text-anchor="middle" font-size="9" fill="#888">1</text>
-      <rect id="map-2"  x="564" y="50" width="44" height="38" fill="none" stroke="#888" stroke-width="0.8" vector-effect="non-scaling-stroke"/>
-      <text x="586" y="73" text-anchor="middle" font-size="9" fill="#888">2</text>
+      <rect id="map-1"  x="564" y="50" width="44" height="38" fill="none" stroke="#888" stroke-width="0.8" vector-effect="non-scaling-stroke"/>
+      <text x="586" y="73" text-anchor="middle" font-size="9" fill="#888">1</text>
+      <rect id="map-2"  x="564" y="6"  width="44" height="38" fill="none" stroke="#888" stroke-width="0.8" vector-effect="non-scaling-stroke"/>
+      <text x="586" y="29" text-anchor="middle" font-size="9" fill="#888">2</text>
 
       <text x="620" y="54" text-anchor="start" font-size="12" fill="#aaa" font-family="'Shippori Mincho', serif" letter-spacing="1">作品配置図</text>
     </svg>
@@ -451,7 +451,10 @@ function showDetail(i) {
         const centerPx = (x + tw / 2) * scale;
         wrap.scrollLeft = Math.max(0, centerPx - wrap.clientWidth / 2);
       }
+      setupMapClicks();
     }, 200);
+  } else {
+    setTimeout(() => { setupMapClicks(); }, 200);
   }
 
   // GA4にページビューを送信
