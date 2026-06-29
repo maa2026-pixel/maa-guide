@@ -100,6 +100,11 @@
     color: #1a9ea0;
     margin-bottom: 12px;
   }
+  #vimeo-note-zh {
+    font-size: 13px;
+    color: #1a9ea0;
+    margin-bottom: 12px;
+  }
   .no-content-box {
     border: 1px solid #ccc;
     color: #aaa;
@@ -259,6 +264,7 @@
   <div id="vimeo-section">
     <div id="vimeo-note">※ 音声ガイドはイヤホンでの視聴をお願いいたします。</div>
     <div id="vimeo-note-en">※ Please use earphones when listening to the audio guide.</div>
+    <div id="vimeo-note-zh">请佩戴耳机收听。／請配戴耳機收聽。</div>
     <div id="detail-vimeo"></div>
   </div>
 </div>
@@ -358,6 +364,7 @@ function showDetail(i) {
     vimeoSection.innerHTML = `
       <div id="vimeo-note">※ 音声ガイドはイヤホンでの視聴をお願いいたします。</div>
       <div id="vimeo-note-en">※ Please use earphones when listening to the audio guide.</div>
+      <div id="vimeo-note-zh">请佩戴耳机收听。／請配戴耳機收聽。</div>
       <div id="detail-vimeo"></div>
     `;
     const vimeoEl = document.getElementById('detail-vimeo');
