@@ -20,583 +20,63 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "xd475t2tl2");
 </script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,100,0,0&icon_names=arrow_back,arrow_forward,arrow_forward_ios" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif; background: #f5f5f5; color: #222; }
-  #header { line-height: 0; background: #1a9ea0; padding: 23px 20px 17px; }
-  #header img { width: 80%; display: block; margin: 0 auto; }
-  #header-band { background: #1a9ea0; height: 10px; }
-  #list-view { display: block; }
-  #detail-view { display: none; }
-  ul { list-style: none; background: #fff; margin: 30px 26px 40px; border-radius: 8px; overflow: hidden; }
-  li a {
-    display: flex;
-    align-items: center;
-    padding: 28px 40px 28px 30px;
-    border-bottom: 1px solid #eee;
-    text-decoration: none;
-    color: #222;
-    font-size: 16px;
-    gap: 12px;
+  html, body {
+    height: 100%;
   }
-  li:last-child a { border-bottom: none; }
-  li a:active { background: #f0f0f0; }
-  .num { font-size: 18px; color: #1a9ea0; min-width: 24px; font-family: 'Shippori Mincho', serif; }
-  .num:empty { min-width: 0; }
-  li a.no-num { padding-left: 16px; gap: 0; }
-  .title-text { flex: 1; font-family: 'Shippori Mincho', serif; }
-  #detail-view { background: #fff; min-height: 100vh; padding-bottom: 40px; }
-  #detail-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 16px;
-    border-bottom: 1px solid #eee;
-    position: sticky;
-    top: 0;
+  body {
     background: #fff;
-    z-index: 10;
-  }
-  #back-btn {
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 200;
-    color: #555;
-    background: none;
-    padding: 6px 12px 6px 6px;
-    cursor: pointer;
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-  #back-btn .material-symbols-outlined { font-size: 21px; font-variation-settings: 'wght' 200; }
-  #back-btn:active { background: #f0f0f0; }
-  #font-toggle { display: flex; gap: 8px; }
-  #font-toggle button {
-    border: 1px solid #ddd; border-radius: 3px; background: #fff;
-    color: #bbb; padding: 4px 12px; cursor: pointer; font-size: 13px; font-weight: 300;
-  }
-  #font-toggle button.active { background: #eee; color: #555; border-color: #ccc; font-weight: 300; }
-  #detail-body { padding: 20px 20px 0; position: relative; }
-  #detail-title-text { font-size: 20px; font-weight: 400; color: #222; margin-bottom: 16px; font-family: 'Shippori Mincho', serif; }
-  #detail-num { color: #1a9ea0; }
-  #detail-body p { font-size: 15px; line-height: 1.8; color: #333; white-space: pre-wrap; font-weight: 300; margin-bottom: 0; }
-  body.large #detail-body p { font-size: 19px; }
-  body.large #detail-title-text { font-size: 24px; }
-  #vimeo-section { padding: 0 20px; margin-top: 56px; }
-  #vimeo-note {
-    font-size: 13px;
-    color: #1a9ea0;
-    margin-bottom: 4px;
-  }
-  #vimeo-note-en {
-    font-size: 13px;
-    color: #1a9ea0;
-    margin-bottom: 12px;
-  }
-  #vimeo-note-zh {
-    font-size: 13px;
-    color: #1a9ea0;
-    margin-bottom: 12px;
-  }
-  .no-content-box {
-    border: 1px solid #ccc;
-    color: #aaa;
-    font-size: 13px;
-    padding: 16px;
-    text-align: center;
-    margin-bottom: 12px;
-  }
-  #map-wrap {
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding: 24px 16px 24px 28px;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    position: relative;
-  }
-  #map-outer {
-    position: relative;
-  }
-  #map-overlay-left, #map-overlay-right {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 48px;
-    z-index: 2;
-    pointer-events: none;
-  }
-  #map-overlay-left {
-    left: 0;
-    background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
-  }
-  #map-overlay-right {
-    right: 0;
-    background: linear-gradient(to left, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
-  }
-  #map-svg rect {
-    stroke-width: 0.8px;
-    vector-effect: non-scaling-stroke;
-  }
-  #map-svg {
-    display: block;
-    min-width: 927px;
-    height: 120px;
-  }
-  #page-nav {
-    display: flex;
-    justify-content: space-between;
-    border-top: 1px solid #eee;
-    margin-top: 32px;
-    padding: 16px 20px;
-  }
-  .nav-prev, .nav-next {
+    color: #3a3a3a;
+    font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    padding: 0;
-    text-align: left;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 40px 24px;
+    text-align: center;
   }
-  .nav-next { text-align: right; }
-  .nav-label { font-size: 14px; color: #333; font-weight: 300; }
-  .nav-arrow { font-size: 30px; color: #555; font-weight: 400; }
-  .nav-title { font-size: 12px; color: #aaa; font-weight: 300; }
+  .label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: #3a3a3a;
+    margin-bottom: 28px;
+    text-transform: uppercase;
+  }
+  h1 {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.8;
+    color: #3a3a3a;
+    margin-bottom: 32px;
+  }
+  .divider {
+    width: 32px;
+    height: 1px;
+    background: #ccc;
+    margin: 0 auto 32px;
+  }
+  p {
+    font-size: 13px;
+    line-height: 2;
+    color: #3a3a3a;
+    font-weight: 300;
+  }
+  p + p {
+    margin-top: 8px;
+  }
 </style>
 </head>
 <body>
-<div id="list-view">
-  <div id="header">
-    <img src="header.png" alt="千年先の風景 人智を超えた設計と挑戦">
-  </div>
-  <div id="header-band"></div>
-  <ul id="work-list"></ul>
-</div>
-<div id="detail-view">
-  <div id="detail-top">
-    <button id="back-btn" onclick="showList()"><span class="material-symbols-outlined">arrow_back</span> 一覧に戻る</button>
-    <div id="font-toggle">
-      <button id="btn-small" class="active" onclick="setFont('small')">小</button>
-      <button id="btn-large" onclick="setFont('large')">大</button>
-    </div>
-  </div>
-  <div id="map-outer">
-    <div id="map-overlay-left"></div>
-    <div id="map-overlay-right"></div>
-    <div id="map-wrap">
-    <svg id="map-svg" viewBox="0 0 700 104" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-      <rect id="map-14" x="20"  y="33" width="44" height="38" fill="none" stroke="#888" stroke-width="0.8" vector-effect="non-scaling-stroke"/>
-      <text x="42"  y="56" text-anchor="middle" font-size="9" fill="#888">14</text>
-
-      <rect id="map-13" x="70"  y="7"  width="150" height="80" fill="none" stroke="#888" stroke-width="0.8" vector-effect="non-scaling-stroke"/>
-      <text x="145" y="51" text-anchor="middle" font-size="9" fill="#888">13</text>
-
-      <rect id="map-11" x="226" y="6"  width="44" height="38" fill="none" stroke="#888" stroke-width="0.8" vector-effect="non-scaling-stroke"/>
-      <text x="248" y="29" text-anchor="middle" font-size="9" fill="#888">11</text>
-      <rect id="map-12" x="226" y="50" width="44" height="38" fill="none" stroke="#888" stroke-width="0.8" vector-effect="non-scaling-stroke"/>
-      <text x="248" y="73" text-anchor="middle" font-size="9" fill="#888">12</text>
-
-      <rect id="map-10" x="276" y="1"  width="38" height="92" fill="none" stroke="#888" stroke-width="0.8" vector-effect="non-scaling-stroke"/>
-      <text x="295" y="51" text-anchor="middle" font-size="9" fill="#888">10</text>
-
-      <rect id="map-7a" x="320" y="6"  width="44" height="38" fill="none" stroke="#888" stroke-width="0.8" vector-effect="non-scaling-stroke"/>
-      <text x="342" y="29" text-anchor="middle" font-size="9" fill="#888">7</text>
-      <rect id="map-9"  x="320" y="50" width="44" height="38" fill="none" stroke="#888" stroke-width="0.8" vector-effect="non-scaling-stroke"/>
-      <text x="342" y="73" text-anchor="middle" font-size="9" fill="#888">9</text>
-
-      <rect id="map-7b" x="370" y="0"  width="44" height="44" fill="none" stroke="#888" stroke-width="0.8" vector-effect="non-scaling-stroke"/>
-      <text x="392" y="26" text-anchor="middle" font-size="9" fill="#888">7</text>
-      <rect id="map-8"  x="370" y="50" width="44" height="38" fill="none" stroke="#888" stroke-width="0.8" vector-effect="non-scaling-stroke"/>
-      <text x="392" y="73" text-anchor="middle" font-size="9" fill="#888">8</text>
-
-      <rect id="map-5-2" x="420" y="6"  width="88" height="38" fill="none" stroke="#888" stroke-width="0.8" vector-effect="non-scaling-stroke"/>
-      <text x="464" y="29" text-anchor="middle" font-size="9" fill="#888">5-2</text>
-      <rect id="map-6"   x="420" y="50" width="40" height="38" fill="none" stroke="#888" stroke-width="0.8" vector-effect="non-scaling-stroke"/>
-      <text x="440" y="73" text-anchor="middle" font-size="9" fill="#888">6</text>
-      <rect id="map-5-1" x="466" y="50" width="42" height="38" fill="none" stroke="#888" stroke-width="0.8" vector-effect="non-scaling-stroke"/>
-      <text x="487" y="73" text-anchor="middle" font-size="9" fill="#888">5-1</text>
-
-      <rect id="map-4"  x="514" y="6"  width="44" height="38" fill="none" stroke="#888" stroke-width="0.8" vector-effect="non-scaling-stroke"/>
-      <text x="536" y="29" text-anchor="middle" font-size="9" fill="#888">4</text>
-      <rect id="map-3"  x="514" y="50" width="44" height="38" fill="none" stroke="#888" stroke-width="0.8" vector-effect="non-scaling-stroke"/>
-      <text x="536" y="73" text-anchor="middle" font-size="9" fill="#888">3</text>
-
-      <rect id="map-1"  x="564" y="50" width="44" height="38" fill="none" stroke="#888" stroke-width="0.8" vector-effect="non-scaling-stroke"/>
-      <text x="586" y="73" text-anchor="middle" font-size="9" fill="#888">1</text>
-      <rect id="map-2"  x="564" y="6"  width="44" height="38" fill="none" stroke="#888" stroke-width="0.8" vector-effect="non-scaling-stroke"/>
-      <text x="586" y="29" text-anchor="middle" font-size="9" fill="#888">2</text>
-
-      <text x="620" y="54" text-anchor="start" font-size="12" fill="#aaa" font-family="'Shippori Mincho', serif" letter-spacing="1">作品配置図</text>
-    </svg>
-  </div>
-  </div>
-  <div id="anchor-btn-wrap" style="display:flex;justify-content:flex-end;padding:0 20px 0;">
-      <svg onclick="document.getElementById('vimeo-section').scrollIntoView({behavior:'smooth'})" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36.55 51.15" width="57" height="57" style="cursor:pointer;">
-        <path fill="#989999" d="M25.92,43.5l-7.65,7.64-7.65-7.64h15.29Z"/>
-        <circle fill="#e5e5e5" cx="18.27" cy="18.27" r="18.27"/>
-        <path fill="#989999" d="M16.16,25.77c-.69-.69-1.04-1.56-1.04-2.59s.35-1.89,1.05-2.59c.7-.69,1.55-1.04,2.57-1.04.52,0,1,.1,1.44.29.44.19.84.48,1.2.88v-12.07h6.54v2.78h-5.57v11.76c0,1.01-.35,1.87-1.04,2.57-.69.7-1.55,1.05-2.58,1.05s-1.89-.35-2.58-1.04h0ZM4.82,23.19c0-1.97.36-3.81,1.08-5.49.72-1.69,1.7-3.16,2.95-4.41,1.24-1.25,2.71-2.24,4.4-2.94,1.69-.71,3.52-1.06,5.48-1.06v.97c-1.81,0-3.51.33-5.09.99s-2.95,1.57-4.12,2.74c-1.17,1.17-2.08,2.54-2.74,4.1-.66,1.57-.99,3.27-.99,5.1h-.97,0ZM9.51,23.19c0-1.33.24-2.56.71-3.69.47-1.13,1.12-2.1,1.94-2.92.82-.82,1.8-1.46,2.92-1.92s2.35-.69,3.66-.69v.97c-2.39,0-4.37.78-5.92,2.33-1.56,1.55-2.33,3.53-2.33,5.92h-.97Z"/>
-      </svg>
-  </div>
-  <div id="detail-body">
-    <div id="detail-title-text"></div>
-    <p id="detail-text"></p>
-  </div>
-  <div id="page-nav">
-    <button class="nav-prev" id="nav-prev-btn" onclick="movePage(-1)">
-      <span class="nav-label">前のページ</span>
-      <span class="nav-arrow"><span class="material-symbols-outlined" style="font-size:30px;">arrow_back</span></span>
-      <span class="nav-title" id="nav-prev-title"></span>
-    </button>
-    <button class="nav-next" id="nav-next-btn" onclick="movePage(1)">
-      <span class="nav-label">次のページ</span>
-      <span class="nav-arrow"><span class="material-symbols-outlined" style="font-size:30px;">arrow_forward</span></span>
-      <span class="nav-title" id="nav-next-title"></span>
-    </button>
-  </div>
-  <div id="vimeo-section">
-    <div id="vimeo-note">※ 音声ガイドはイヤホンでの視聴をお願いいたします。</div>
-    <div id="vimeo-note-en">※ Please use earphones when listening to the audio guide.</div>
-    <div id="vimeo-note-zh">请佩戴耳机收听。／請配戴耳機收聽。</div>
-    <div id="detail-vimeo"></div>
-  </div>
-</div>
-<script>
-const works = [
-  {
-    num: null, title: "展示会コンセプト", mincho: true, hideTitle: true, noMap: true,
-    text: `千年先の風景
-— 人智を超えた設計と挑戦
-
-もし、神がひとつの土地を選び、
-そこに風景を刻むとしたら ――
-人に忘れられた狭い谷。
-ぬかるむ畑。急な斜面。
-かつては価値がないと捨て去られた場所。
-ここは韓国・月明洞。
-
-しかし ――
-理解を超えた構想が与えられた。
-―― シャベル1つから前代未聞の挑戦が始まる。
-
-谷間は、岩壁の滝に
-田畑は、広大な湖に
-斜面は、祈りの園に
-
-個々の要素は、役割を帯び互いに結びつき
-欠かすことのできない存在へと変えられる。
-
-壮大な営みは、やがて ――
-毎年、百万人が訪れる理想郷となって
-木々と岩も、その喜びを語る。
-
-机上で起こり得ないシナリオ。
-人の意図を超えた秩序と調和。
-
-それは設計なのか。
-それとも、導きなのか。
-この風景は、千年という時間の途中にある。
-
-―― 完成を知る者は、まだ誰もいない。`,
-    vimeoId: "1204110946", vimeoPad: "56.25%", vimeoTitle: "202606月明洞写真展説明タイトル0_コンセプト", vimeoIdEn: "1205201276"
-  },
-  { num: null, title: "月明洞の概要", noMap: true, text: `かつては水もなく「蛙も逃げ出す」とまで言われた、荒れた寂しい山奥でした。そこが、シャベル1つから始めた30年以上に及ぶ開発によって、世界中から年間100万人が集まる理想郷になりました。元の地形を活かして開発したため、自然な秩序と調和が美しく、神秘的で、勇壮な自然聖殿として建築されました。千年を見据えて自然石で積まれた岩の造景は5度の崩落を経て6度目に完成しましたが、計り知れない情熱と執念によってついに実現しました。月明洞の全体の広さはおよそ東京ドーム35個分に相当します。`, vimeoId: "1204113356", vimeoPad: "56.25%", vimeoTitle: "202606月明洞写真展説明_月明洞の概要mp4", vimeoIdEn: "1205201275" },
-  { num: 1, title: "月明洞の地形", text: `月明洞地域は、朝鮮半島の最高峰である白頭（ペクトゥ）山から背骨のように伸びている太白（テベク）山脈の流れの先端に位置しています。月明洞を中心に、周囲にある山脈がちょうど花びらのように幾層にも及んで取り囲んでいます。東は日が登る人大（インデ）山、西は日の沈む大屯（テドゥン）山に挟まれており、月明洞を取り囲む8km四方の山脈の地形が龍、鷲、人、花などの形象を成しています。変化に富んだ稜線が様々な造形美を織りなしています。`, vimeoId: "1204115024", vimeoPad: "56.25%", vimeoTitle: "202606月明洞写真展タイトル1_月明洞の地形", vimeoIdEn: "1205201269", vimeoIdZh: "1205299015" },
-  { num: 2, title: "噴火口の形象", text: `月明洞は、中央の広場を中心に「楕円形の噴火口」の形をしています。一般的に噴火口は底が深く、入り口もないため、遠くから鑑賞するのみで、人が中に入る場所として開発することはできません。しかし月明洞は「入り口のある噴火口」なので開発ができました。東側の稜線から西側の稜線までが500m、南側から北側までの稜線が300mです。この寸法は自然界で最も安定的で美しいとされる「黄金比率」に合致しています。また、大きすぎず小さすぎない適度な広さを保っています。地形全体がまるで芸術作品のようです。`, vimeoId: "1204116265", vimeoPad: "56.25%", vimeoTitle: "202606月明洞写真展タイトル2_噴火口の形象", vimeoIdEn: "1205201270", vimeoIdZh: "1205299012" },
-  { num: 3, title: "月明洞の様子", text: `この場所は1970年代まで電気さえも通っておらず、月が明るい村と書いてタルバッコルと呼ばれるほど寂しい山奥でした。しかし、開発を30年以上続け、今では年間100万人が訪問する世界的な名所となりました。芝生は2万人、岩の造景や運動場まで含めると全体で3～4万人が収容できます。人と岩々の大きさを比較してスケールの大きさを感じることができます。`, vimeoId: "1204117669", vimeoPad: "56.25%", vimeoTitle: "202606月明洞写真展タイトル3_月明洞の様子", vimeoIdEn: "1205201278", vimeoIdZh: "1205299014" },
-  { num: 4, title: "月明湖（ウォルミョンコ）", text: `かつてこの場所は水が少なく雨水を溜めて稲を育てる田んぼでしたが、今は豊かな水を湛える広大な湖となりました。静穏な姿の湖とその中に佇む趣深い八角亭が調和して幻想的です。湖の奥行きで最も長いところは約70〜80mあります。溜まっている水のように見えますが、山の上から流れてくる全ての水が、湖を通って流れています。ちょうど部屋の中に水を汲んでおいたように月明洞の湿度調節の役割を果たしています。夏は人々が童心に帰って水遊びできる1000人規模の野外プールに、冬は氷が張ってスケートリンクにもなり、船を浮かべたり、雪が積もる風景を見る時は神聖な静寂さが心を清らかにします。`, vimeoId: "1204118849", vimeoPad: "56.25%", vimeoTitle: "202606月明洞写真展タイトル4_月明湖(ウォルミョンコ)", vimeoIdEn: "1205201287", vimeoIdZh: "1205299013" },
-  { num: "5-1", title: "開発前の姿（1990年代初頭）", text: `開発前のこの場所は木も岩もなく狭い谷間に小さな畑がある寂しい村でした。道も悪く、土地は荒れ放題で、ジャングルのように草木が生い茂り、傾斜だらけで平地も少ない場所でした。ノミやシラミ、蚊も多く、地獄のような苦しみに耐える生活でした。水が全く出ない地域であったため蛙も逃げ出す場所と言われたほどです。山に囲まれているので狭く息苦しく、住む人はみんな、ここから出ていくことだけが望みでした。`, vimeoId: "1204350375", vimeoPad: "56.25%", vimeoTitle: "202606月明洞写真展タイトル5-1_開発前の姿", vimeoIdEn: "1205201286", vimeoIdZh: "1205299219" },
-  { num: "5-2", title: "開発後の姿", text: `月明洞は、開発前と開発後ではまるで別世界です。かつて人々に見捨てられていた一つの谷あいは、自然に逆らうのではなく、その地形や環境と調和しながら、長い歳月をかけて生まれ変わりました。この場所は「自然聖殿」と呼ばれています。しかし、それは単に「自然の中にある聖殿」という意味ではありません。山を壁とし、空を天井とする、自然そのものを聖殿として捉えた空間です。一般的な聖殿の中心には礼拝堂がありますが、月明洞における礼拝堂は広大な芝生の斜面です。さらに大きな視点で見れば、月明洞全体を一つの礼拝堂として捉えることもできます。写真左端に見える記念館は、講壇をモチーフとして建てられました。その屋上から全体を見渡しながら説教を行うと、月明洞全体が壮大な礼拝堂となります。この礼拝堂の中には滝が流れ、サッカーができる広場があり、湖では泳ぐこともできます。どんな建築物とも比較にならない前代未聞のスケールだと言えます。`, vimeoId: "1204375994", vimeoPad: "56.25%", vimeoTitle: "202606月明洞写真展タイトル 6開発後の姿", vimeoIdEn: "1205201285", vimeoIdZh: "1205299227" },
-  { num: 6, title: "聖霊道", text: `月明洞の東西南北に伸びる道のうち、西側の道が「聖霊道」です。アスファルト道のS字ラインの美しさ、西側に沈む夕日が大変美しく見える道の特徴を踏まえ、聖書に登場する天母・聖霊を象徴する道としてこのように名付けられました。以前あった道は、幅も狭く直線的で傾斜の激しい舗装されてない山道でしたが、地形に合わせてS字カーブを描くゆるやかな傾斜の道に開発しました。初めは砂利道で作ったところ雨に流されてしまい維持管理が難しく、最終的にアスファルトで舗装し、利便性も増すようになりました。この道を通って深い谷を緩やかに下ると、谷を吹き抜ける風が心地よく、視線の先にはテドゥン山の勇壮な岩の絶壁を煽ぐことができます。`, vimeoId: "1204168245", vimeoPad: "56.25%", vimeoTitle: "202606月明洞写真展タイトル7_聖霊道", vimeoIdEn: "1205201291", vimeoIdZh: "1205299229" },
-  { num: 7, title: "聖霊の滝の東屋・聖霊の滝", text: `聖霊の滝は、山の小さな谷の地形を生かして作られた壮大な岩と松の造景です。高さ23mにもなる岩の造景のあちこちに松の巨木が植えられており、大きいものは幹の太さが直径100㎝を超えます。左右を巨大な岩に囲まれるように設計された滝つぼは22mの奥行きがあるプールとなっています。全体の形は滝の左右に柔らかい曲線を描いており、聖書に登場する天母・聖霊を象徴する滝として、女性らしさが感じられます。この滝は、神様の滝の対として構想されました。岩の造景の中を歩く絶壁の道を通って滝の上部に上がると、堅牢な木材と石柱で建てられた東屋が佇んでいますが、ここから月明洞やテドゥン山の絶景を一望することが出来ます。聖霊の滝の前では人々が楽しく食事もできるので、別名「宴会場」とも呼ばれています。`, vimeoId: "1204340509", vimeoPad: "56.25%", vimeoTitle: "202606月明洞写真展タイトル7_聖霊の滝と東屋", vimeoIdEn: "1205201298", vimeoIdZh: "1205299236" },
-  { num: 8, title: "運動場", text: `64m×100mの国際規格のサッカーグラウンドです。山に挟まれた狭い谷間を、硬い岩盤を少しずつ削って広げながら完成しました。広すぎず狭すぎず、適当な広さを保っています。毎年、世界中から多くの人々が集まって、平和を目的としたサッカーやバレーボール、テニス、バスケットボールなどの国際大会が開催されています。スポーツをするときに人々が怪我をしないように小さな石1つないように真心を込めて管理されています。この運動場は昔から一度雨が降ると大きな水たまりになって使用することが出来なかったので、中心部分を少し高めた構造にし、土を入れ替えて排水の問題を解決するようになりました。`, vimeoId: "1204097425", vimeoPad: "56.25%", vimeoTitle: "202606月明洞写真展タイトル8_運動場", vimeoIdEn: "1205201301", vimeoIdZh: "1205299240" },
-  { num: 9, title: "芝生", text: `月明洞には広々として美しい芝生があります。2万人を収容することができる広大な芝生の広場は自然の聖殿として構想されました。硬い土でできた急傾斜の斜面に、芝を植え、自生させることは困難を極めましたが、絶え間ない労苦と努力によって実現されました。谷の傾斜に手を加えずにそのまま残したことで、音が奥までよく響く天然の音響ホールとなりました。合唱大会など、国際的な文化芸術イベントの会場としても使用され、雪が積もる冬には、老若男女ともにソリをして楽しむ声で溢れます。広々とした空間と穏やかな景観は訪れる人の心を落ち着かせ、静かに自分自身を見つめ、深い祈りをしたくなるような場所です。`, vimeoId: "1204346095", vimeoPad: "56.25%", vimeoTitle: "202606月明洞写真展タイトル 11芝生", vimeoIdEn: "1205201303", vimeoIdZh: "1205299249" },
-  { num: 10, title: "神様の滝と東屋", text: `神様の滝は、かつて水の流れもない小さな谷だった急斜面に、20年にわたる構想の末に完成した滝です。滝の頂には青い瓦屋根の東屋が凛と佇み、その直下を白い水流が岩肌を打ちながら豪快に流れ下ります。この滝は神様の雄大さと力強さを象徴する滝として造られ、全体から男性的で勇壮な印象が感じられます。滝の中心となる険しい谷を表現するため、薄く長い自然石を選び積み上げました。それにより険しさの中にも神秘的な美しさが表現されています。高さ13mから注がれる水は、最上部では広く流れ、途中で一か所へと集まり、再び自然な姿で流れ落ちていきます。また、絶壁のあちこちから湧き出るように水があふれ出し、見る角度によって異なる表情を見せます。`, vimeoId: "1204345032", vimeoPad: "56.25%", vimeoTitle: "202606月明洞写真展タイトル10_神様の滝と東屋", vimeoIdEn: "1205201304", vimeoIdZh: "1205299252" },
-  { num: 11, title: "ラクダ岩", text: `500t程になる巨大なラクダの形象をした自然石です。芝生の端に位置し、段ボール箱1つくらいの大きさの岩が地表から飛び出していたので20日余り掘ったところ、その姿が現れました。月明洞は5つの谷から成る星の形をしているため、このラクダ岩は東方の三博士たちがラクダに乗り、星の導きでイエスの誕生を祝ったという聖書の逸話を連想させます。これほど姿が似ている岩がこの場所から掘り出されたことは不思議でなりません。`, vimeoId: "1204347432", vimeoPad: "56.25%", vimeoTitle: "202606月明洞写真展タイトル11_ラクダ岩", vimeoIdEn: "1205201308", vimeoIdZh: "1205299259" },
-  { num: 12, title: "自画像岩", text: `この岩は人の顔の形象に見えることから「自画像岩」と呼ばれています。目、鼻、口、顔の輪郭がはっきりと見られますが、人が彫刻したのではなく、長い歳月をかけて、雨、風、雷によって自然のままに削られて今の姿になりました。雑木林を掃除していた時、岩にかかっていた草木を取り除いたところ突如この岩が発見されました。人間の身長を超える大きさを持ちながら、静かにたたずむその姿には不思議な存在感があります。まるで自然が自ら描いた彫刻作品のようであり、その神秘的な造形は訪れる人々に驚きと感動を与えます。`, vimeoId: "1204349009", vimeoPad: "56.25%", vimeoTitle: "202606月明洞写真展タイトル 12自画像岩", vimeoIdEn: "1205201320", vimeoIdZh: "1205299262" },
-  { num: 13, title: "月明洞のパノラマ", noAudio: true, noVimeoNote: true, noAnchor: true, text: `※ 全長約4mの壮大なパノラマ写真です。月明洞の美しい全景をごゆっくりお楽しみください。`, vimeoId: "", vimeoPad: "", vimeoTitle: "" },
-  { num: 14, title: "野心作", text: `全長240m、高さ40mを誇る「野心作」は、月明洞を代表する岩の造景作品です。野心作という名には「神の自負心を表す」という意味が込められており、造景全体は神の権威を象徴する王座をモチーフに造られました。下段は座面のように広く平らに、上段は背もたれのように巨大な岩がそびえ立ち、見る者を圧倒する景観を生み出しています。しかし、その道のりは決して易しくなく、積み上げた岩が何度も崩れ落ちる困難に直面しながらも、幾度となく挑戦を重ねて完成へと至りました。一つとして同じ形のない自然石を、それぞれ個性を持つ人のように見立てて積み上げられたこの造景の中央には、「命を愛しなさい」と刻まれた石が据えられています。`, vimeoId: "1204169618", vimeoPad: "56.25%", vimeoTitle: "202606月明洞写真展タイトル14_野心作", vimeoIdEn: "1205201321", vimeoIdZh: "1205299271" },
-];
-
-const list = document.getElementById('work-list');
-works.forEach((w, i) => {
-  const li = document.createElement('li');
-  const numHtml = w.num !== null ? `<span class="num">${w.num}</span>` : `<span class="num"></span>`;
-  const noNum = w.num === null ? ' class="no-num"' : '';
-  li.innerHTML = `<a href="#"${noNum} onclick="showDetail(${i}); return false;">${numHtml}<span class="title-text">${w.title}</span><span class="material-symbols-outlined" style="font-size:19px;color:#666;margin-right:-20px;">arrow_forward_ios</span></a>`;
-  list.appendChild(li);
-});
-
-function showDetail(i) {
-  const w = works[i];
-  const titleEl = document.getElementById('detail-title-text');
-  if (w.hideTitle) {
-    titleEl.style.display = 'none';
-  } else {
-    titleEl.style.display = '';
-    const titlePrefix = w.num !== null ? `<span id="detail-num">${w.num}</span>　` : '';
-    titleEl.innerHTML = titlePrefix + w.title;
-  }
-  const textEl = document.getElementById('detail-text');
-  textEl.textContent = w.text.trim();
-  textEl.style.fontFamily = w.mincho ? "'Shippori Mincho', serif" : '';
-
-  const vimeoSection = document.getElementById('vimeo-section');
-  if (w.noContent) {
-    vimeoSection.innerHTML = `
-      <div class="no-content-box">こちらの作品には解説テキストはございません。</div>
-      <div class="no-content-box">こちらの作品には音声ガイドはございません。</div>
-    `;
-  } else if (w.noAudio && w.noVimeoNote) {
-    vimeoSection.innerHTML = '';
-  } else if (w.noAudio) {
-    vimeoSection.innerHTML = `
-      <div class="no-content-box">こちらの作品には音声ガイドはございません。</div>
-    `;
-  } else {
-    vimeoSection.innerHTML = `
-      <div id="vimeo-note">※ 音声ガイドはイヤホンでの視聴をお願いいたします。</div>
-      <div id="vimeo-note-en">※ Please use earphones when listening to the audio guide.</div>
-      <div id="vimeo-note-zh">请佩戴耳机收听。／請配戴耳機收聽。</div>
-      <div id="detail-vimeo"></div>
-    `;
-    const vimeoEl = document.getElementById('detail-vimeo');
-    if (w.vimeoId) {
-      const ratio = w.vimeoPad === "75%" ? "4/3" : "16/9";
-      vimeoEl.innerHTML = `<div style="font-size:13px;color:#888;font-weight:300;margin-bottom:8px;">【日本語音声】</div><div style="aspect-ratio:${ratio};width:100%;"><iframe id="vimeo-iframe" src="https://player.vimeo.com/video/${w.vimeoId}?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="width:100%;height:100%;" title="${w.vimeoTitle}"></iframe></div>${w.vimeoIdEn ? `<div style="font-size:13px;color:#888;font-weight:300;margin-top:16px;margin-bottom:8px;">【English Audio Guide / 英語音声】</div><div style="aspect-ratio:16/9;width:100%;"><iframe src="https://player.vimeo.com/video/${w.vimeoIdEn}?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="width:100%;height:100%;" title="${w.vimeoTitle} (English)"></iframe></div>` : ''}${w.vimeoIdZh ? `<div style="font-size:13px;color:#888;font-weight:300;margin-top:16px;margin-bottom:8px;">【中文语音导览 / 中文語音導覽 / 中国語音声】</div><div style="aspect-ratio:16/9;width:100%;"><iframe src="https://player.vimeo.com/video/${w.vimeoIdZh}?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="width:100%;height:100%;" title="${w.vimeoTitle} (Chinese)"></iframe></div>` : ''}`;
-      const loadVimeoTracking = () => {
-        const idle = window.requestIdleCallback || (cb => setTimeout(cb, 200));
-        idle(() => {
-          const iframe = document.getElementById('vimeo-iframe');
-          if (!iframe || typeof Vimeo === 'undefined') return;
-          const player = new Vimeo.Player(iframe);
-          const title = w.num !== null ? `${w.num} ${w.title}` : w.title;
-          player.on('play', () => {
-            if (typeof gtag !== 'undefined') gtag('event', 'video_start', { video_title: title });
-          });
-          player.on('ended', () => {
-            if (typeof gtag !== 'undefined') gtag('event', 'video_complete', { video_title: title });
-          });
-        });
-      };
-      if (!document.querySelector('script[src="https://player.vimeo.com/api/player.js"]')) {
-        const s = document.createElement('script');
-        s.src = 'https://player.vimeo.com/api/player.js';
-        s.onload = () => setTimeout(loadVimeoTracking, 500);
-        document.body.appendChild(s);
-      } else {
-        setTimeout(loadVimeoTracking, 500);
-      }
-    } else {
-      vimeoEl.innerHTML = '<div class="vimeo-placeholder"></div>';
-    }
-  }
-
-  document.getElementById('list-view').style.display = 'none';
-  document.getElementById('detail-view').style.display = 'block';
-  document.getElementById('detail-body').style.paddingTop = w.noMap ? '60px' : '20px';
-  document.getElementById('map-wrap').style.visibility = w.noMap ? 'hidden' : 'visible';
-  document.getElementById('map-wrap').style.height = w.noMap ? '0' : '';
-  document.getElementById('map-wrap').style.padding = w.noMap ? '0' : '';
-  document.getElementById('map-wrap').style.borderBottom = w.noMap ? 'none' : '';
-  const anchorBtn = document.getElementById('anchor-btn-wrap');
-  const detailBody = document.getElementById('detail-body');
-  if (w.noMap) {
-    anchorBtn.style.position = 'absolute';
-    anchorBtn.style.top = '20px';
-    anchorBtn.style.right = '20px';
-    anchorBtn.style.padding = '0';
-    detailBody.style.position = 'relative';
-    detailBody.appendChild(anchorBtn);
-  } else {
-    anchorBtn.style.position = '';
-    anchorBtn.style.top = '';
-    anchorBtn.style.right = '';
-    anchorBtn.style.padding = '0 20px 0';
-    document.getElementById('map-outer').after(anchorBtn);
-  }
-  document.getElementById('anchor-btn-wrap').style.display = w.noAnchor ? 'none' : 'flex';
-  document.querySelectorAll('#map-svg rect').forEach(r => {
-    r.setAttribute('fill', 'none');
-    r.setAttribute('stroke', '#ccc');
-    r.setAttribute('stroke-width', '1.5');
-    const t = r.nextElementSibling;
-    if (t) t.setAttribute('fill', '#aaa');
-  });
-  const numStr = w.num !== null ? String(w.num) : null;
-  if (numStr) {
-    const selector = numStr === '7'
-      ? `#map-7, #map-7a, #map-7b`
-      : `#map-${CSS.escape(numStr)}`;
-    const targets = document.querySelectorAll(selector);
-    targets.forEach(r => {
-      r.setAttribute('fill', 'rgba(26,158,160,0.3)');
-      r.setAttribute('stroke', '#1a9ea0');
-      r.setAttribute('stroke-width', '0.5');
-      const t = r.nextElementSibling;
-      if (t) t.setAttribute('fill', '#1a9ea0');
-    });
-    // 該当番号が見える位置にスクロール
-    setTimeout(() => {
-      window.scrollTo(0, 0);
-      const wrap = document.getElementById('map-wrap');
-      const viewBoxWidth = 700;
-      const svgW = 927;
-      const scale = svgW / viewBoxWidth;
-      const targetId = numStr === '7' ? 'map-7a' : `map-${numStr}`;
-      const target = document.getElementById(targetId);
-      if (target) {
-        const x = parseFloat(target.getAttribute('x'));
-        const tw = parseFloat(target.getAttribute('width'));
-        const centerPx = (x + tw / 2) * scale;
-        wrap.scrollLeft = Math.max(0, centerPx - wrap.clientWidth / 2);
-      }
-      setupMapClicks();
-    }, 200);
-  } else {
-    setTimeout(() => { setupMapClicks(); }, 200);
-  }
-
-  // GA4にページビューを送信
-  if (typeof gtag !== 'undefined') {
-    gtag('event', 'page_view', {
-      page_title: w.num !== null ? `${w.num} ${w.title}` : w.title,
-      page_location: window.location.href + '#' + (w.num !== null ? w.num : w.title)
-    });
-  }
-
-  window.currentIndex = i;
-  const prev2 = works[i - 1];
-  const next2 = works[i + 1];
-  const prevBtn = document.getElementById('nav-prev-btn');
-  const nextBtn = document.getElementById('nav-next-btn');
-  if (prev2) {
-    prevBtn.style.visibility = 'visible';
-    const prevPrefix = prev2.num !== null ? prev2.num + '　' : '';
-    document.getElementById('nav-prev-title').textContent = prevPrefix + prev2.title;
-    prevBtn.querySelector('.nav-label').textContent = '前のページ';
-    prevBtn.onclick = () => movePage(-1);
-  } else if (w.hideTitle) {
-    prevBtn.style.visibility = 'visible';
-    prevBtn.querySelector('.nav-label').textContent = 'ホームに戻る';
-    prevBtn.querySelector('.nav-title') && (prevBtn.querySelector('.nav-title').textContent = '');
-    prevBtn.onclick = () => showList();
-  } else {
-    prevBtn.style.visibility = 'hidden';
-  }
-  if (next2) {
-    nextBtn.style.visibility = 'visible';
-    const nextPrefix = next2.num !== null ? next2.num + '　' : '';
-    document.getElementById('nav-next-title').textContent = nextPrefix + next2.title;
-  } else {
-    nextBtn.style.visibility = 'hidden';
-  }
-}
-
-function movePage(dir) {
-  const next = window.currentIndex + dir;
-  if (next >= 0 && next < works.length) showDetail(next);
-}
-
-function setFont(size) {
-  document.body.classList.toggle('large', size === 'large');
-  document.getElementById('btn-small').classList.toggle('active', size === 'small');
-  document.getElementById('btn-large').classList.toggle('active', size === 'large');
-}
-
-// マップドラッグスクロール
-const mapWrap = document.getElementById('map-wrap');
-let isDown = false, startX, scrollLeft, moved = false;
-mapWrap.addEventListener('mousedown', e => {
-  isDown = true;
-  moved = false;
-  startX = e.pageX - mapWrap.offsetLeft;
-  scrollLeft = mapWrap.scrollLeft;
-  mapWrap.style.cursor = 'grabbing';
-});
-mapWrap.addEventListener('mouseleave', () => { isDown = false; mapWrap.style.cursor = 'grab'; });
-mapWrap.addEventListener('mouseup', () => { isDown = false; mapWrap.style.cursor = 'grab'; });
-mapWrap.addEventListener('mousemove', e => {
-  if (!isDown) return;
-  e.preventDefault();
-  const x = e.pageX - mapWrap.offsetLeft;
-  const walk = x - startX;
-  if (Math.abs(walk) > 3) moved = true;
-  mapWrap.scrollLeft = scrollLeft - walk;
-});
-mapWrap.style.cursor = 'grab';
-
-// タッチでのスワイプ・タップ区別
-let touchStartX = 0, touchStartY = 0, touchMoved = false;
-mapWrap.addEventListener('touchstart', e => {
-  touchStartX = e.touches[0].clientX;
-  touchStartY = e.touches[0].clientY;
-  touchMoved = false;
-}, { passive: true });
-mapWrap.addEventListener('touchmove', e => {
-  const dx = Math.abs(e.touches[0].clientX - touchStartX);
-  const dy = Math.abs(e.touches[0].clientY - touchStartY);
-  if (dx > 10 || dy > 10) touchMoved = true;
-}, { passive: true });
-function setupMapClicks() {
-  const svg = document.getElementById('map-svg');
-  const wrap = document.getElementById('map-wrap');
-
-  wrap.querySelectorAll('.map-hit').forEach(el => el.remove());
-
-  document.querySelectorAll('#map-svg rect').forEach(r => {
-    const id = r.getAttribute('id');
-    if (!id) return;
-    const numStr = id.replace('map-', '').replace(/[ab]$/, '');
-    const idx = works.findIndex(w => w.num !== null && String(w.num) === numStr);
-    if (idx === -1) return;
-
-    const pt1 = svg.createSVGPoint();
-    pt1.x = parseFloat(r.getAttribute('x'));
-    pt1.y = parseFloat(r.getAttribute('y'));
-    const pt2 = svg.createSVGPoint();
-    pt2.x = pt1.x + parseFloat(r.getAttribute('width'));
-    pt2.y = pt1.y + parseFloat(r.getAttribute('height'));
-
-    const ctm = svg.getScreenCTM();
-    const wrapRect = wrap.getBoundingClientRect();
-
-    const p1 = pt1.matrixTransform(ctm);
-    const p2 = pt2.matrixTransform(ctm);
-
-    const x = p1.x - wrapRect.left + wrap.scrollLeft;
-    const y = p1.y - wrapRect.top;
-    const w2 = p2.x - p1.x;
-    const h2 = p2.y - p1.y;
-
-    const hit = document.createElement('div');
-    hit.className = 'map-hit';
-    hit.style.cssText = `position:absolute;left:${x}px;top:${y}px;width:${w2}px;height:${h2}px;cursor:pointer;z-index:3;`;
-    hit.addEventListener('click', () => {
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'map_tap', {
-          item_name: numStr
-        });
-      }
-      showDetail(idx);
-    });
-    wrap.appendChild(hit);
-  });
-}
-setupMapClicks();
-
-function showList() {
-  document.getElementById('detail-view').style.display = 'none';
-  document.getElementById('list-view').style.display = 'block';
-  window.scrollTo(0, 0);
-}
-</script>
+  <div class="label">Coming Soon</div>
+  <h1>次の展示をお楽しみに</h1>
+  <div class="divider"></div>
+  <p>近日公開予定です。</p>
+  <p>Coming soon. / 即将开放。／即將開放。</p>
 </body>
 </html>
